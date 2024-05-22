@@ -12,5 +12,7 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
         public bool IsDisabled { get; set; }
 
         public ICollection<ApplicationUserRole> UserRoles { get; set; }
+
+        public ICollection<Apartment> Apartments { get; set; }
     }
 }

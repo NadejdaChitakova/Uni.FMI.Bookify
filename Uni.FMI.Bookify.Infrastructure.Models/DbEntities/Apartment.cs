@@ -1,4 +1,5 @@
-﻿using Uni.FMI.Bookify.Insrastructure.Models.Common;
+﻿using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
+using Uni.FMI.Bookify.Insrastructure.Models.Common;
 
 namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 {
@@ -21,5 +22,11 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
         public List<Amenity> Amenities { get; init; }
 
         public List<ApartmentImage> ApartmentImages { get; set; }
+
+public Guid OwnewId { get; init; }
+
+public ApplicationUser Owner { get; set; }
+
+public ICollection<Booking> Bookings { get; set; }
     }
 }

@@ -5,5 +5,7 @@
         public Guid Id { get; init; }
 
         public string Name { get; init; }
+
+        public List<Address> Address { get; set; }
     }
 }
