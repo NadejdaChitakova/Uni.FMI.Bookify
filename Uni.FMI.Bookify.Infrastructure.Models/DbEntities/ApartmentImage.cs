@@ -10,6 +10,8 @@
 
         public byte[] Content { get; init; }
 
+        public Guid ApartmentId { get; init; }
+
         public Apartment Apartment { get; init; }
     }
 }
