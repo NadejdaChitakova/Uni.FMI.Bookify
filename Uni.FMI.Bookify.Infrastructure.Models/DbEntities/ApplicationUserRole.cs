@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
+using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 
-namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
+namespace Uni.FMI.Bookify.Infrastructure.Models.DbEntities
 {
-    internal class ApplicationUserRole
+    public class ApplicationUserRole : IdentityUserRole<string>
     {
+        public DateTime TimeCreated { get; set; }
+
+        public string CreatorName { get; set; }
+
+        public ApplicationUser User { get; set; }
+
+        public ApplicationRole Role { get; set; }
     }
 }
