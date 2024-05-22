@@ -14,5 +14,7 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
         public ICollection<ApplicationUserRole> UserRoles { get; set; }
 
         public ICollection<Apartment> Apartments { get; set; }
+
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

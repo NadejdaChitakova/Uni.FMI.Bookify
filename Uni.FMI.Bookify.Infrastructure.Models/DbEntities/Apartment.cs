@@ -17,11 +17,13 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public Money CleaningFee { get; init; }
 
+        public Guid AddressId { get; init; }
+
         public Address Address { get; init; }
 
-        public List<Amenity> Amenities { get; init; }
+        public ICollection<ApartmentAmenity> Amenities { get; init; }
 
-        public List<ApartmentImage> ApartmentImages { get; set; }
+        public ICollection<ApartmentImage> ApartmentImages { get; set; }
 
 public Guid OwnewId { get; init; }
 
