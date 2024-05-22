@@ -1,0 +1,6 @@
+@Uni.FMI.Bookify.API_HostAddress = http://localhost:5183
+
+GET {{Uni.FMI.Bookify.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
