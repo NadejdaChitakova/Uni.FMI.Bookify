@@ -25,7 +25,7 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public ICollection<ApartmentImage> ApartmentImages { get; set; }
 
-public Guid OwnewId { get; init; }
+public string OwnewId { get; init; }
 
 public ApplicationUser Owner { get; set; }
 

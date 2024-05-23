@@ -13,4 +13,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,11 +9,11 @@ namespace Uni.FMI.Bookify.Infrastructure.Models.DbEntities
 
         public string CreatorName { get; set; }
 
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }
 
-        public Guid RoleId { get; set; }
+        public string RoleId { get; set; }
 
         public ApplicationRole Role { get; set; }
     }

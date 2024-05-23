@@ -10,7 +10,7 @@ namespace Uni.FMI.Bookify.Infrastructure.Models.DbEntities
 
         public Guid ApartmentId { get; init; }
 
-        public Guid ApplicationUserId { get; init; }
+        public string ApplicationUserId { get; init; }
 
         public DateRange Duration { get; init; }
 
