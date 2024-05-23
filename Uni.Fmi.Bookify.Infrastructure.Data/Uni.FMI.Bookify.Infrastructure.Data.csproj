@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bookify-MVC\Uni.FMI.Bookify.Infrastructure.Models\Uni.FMI.Bookify.Infrastructure.Models.csproj" />
+    <ProjectReference Include="..\Uni.FMI.Bookify.Infrastructure.Models\Uni.FMI.Bookify.Infrastructure.Models.csproj" />
   </ItemGroup>
 
 </Project>
