@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E0383287-D031-40C0-ABEC-E7105BECACFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uni.FMI.Bookify.Infrastructure.Data", "..\Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj", "{B454212E-65AF-4945-A2B9-0FF2D25C0E6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uni.FMI.Bookify.Infrastructure.Data", "Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj", "{B454212E-65AF-4945-A2B9-0FF2D25C0E6A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uni.FMI.Bookify.API", "Uni.FMI.Bookify.API\Uni.FMI.Bookify.API.csproj", "{061A907F-268F-4B0F-B97D-0DC6D21BA6BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uni.FMI.Bookify.Core.Business", "Uni-FMI.Bookify.Core.Business\Uni.FMI.Bookify.Core.Business.csproj", "{1C771BCA-F904-4BCC-AFFB-CDD5B29A1479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uni.FMI.Bookify.Core.Business", "Uni.FMI.Bookify.Core.Business\Uni.FMI.Bookify.Core.Business.csproj", "{1C771BCA-F904-4BCC-AFFB-CDD5B29A1479}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uni.FMI.Bookify.Core.Models", "Uni.FMI.Bookify.Core.Models\Uni.FMI.Bookify.Core.Models.csproj", "{E3AD7C1C-867D-4FF9-96EA-56C1DB89DACF}"
 EndProject
