@@ -29,11 +29,11 @@ namespace Uni.FMI.Bookify.Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString =
-                _configuration.GetConnectionString("Database") ??
-                throw new ArgumentNullException(nameof(_configuration));
+            //var connectionString =
+            //    _configuration.GetConnectionString("Database") ??
+            //    throw new ArgumentNullException(nameof(_configuration));
 
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=bookify; user id=sa; password=Na!12345678;  TrustServerCertificate=True;");
         }
     }
 }

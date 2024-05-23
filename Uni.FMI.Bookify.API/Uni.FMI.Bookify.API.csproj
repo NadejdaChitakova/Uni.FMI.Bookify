@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

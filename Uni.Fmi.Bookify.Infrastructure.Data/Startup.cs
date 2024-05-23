@@ -13,10 +13,7 @@ namespace Uni.FMI.Bookify.Infrastructure.Data
                 configuration.GetConnectionString("Database") ??
                 throw new ArgumentNullException(nameof(configuration));
 
-            services.AddDbContext<IdentityCoreDbContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
+            services.AddDbContext<IdentityCoreDbContext>(options => { options.UseSqlServer(connectionString); });
 
             return services;
         }

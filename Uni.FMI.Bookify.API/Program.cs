@@ -1,4 +1,5 @@
 using Uni.FMI.Bookify.Infrastructure.Data;
+using Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+app.SeedData();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
