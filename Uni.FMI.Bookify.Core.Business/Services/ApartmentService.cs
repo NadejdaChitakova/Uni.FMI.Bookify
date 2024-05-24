@@ -10,7 +10,7 @@ namespace Uni_FMI.Bookify.Core.Business.Services
     public sealed class ApartmentService(IdentityCoreDbContext dbContext,
                                         IMapper mapper) : IApartmentService
     {
-        public async Task<ApartmentResponse> GetApartment(Guid id)
+        public async Task<ApartmentResponse?> GetApartment(Guid id)
         {
             var query =  dbContext.Set<Apartment>()
                 .Where(x => x.Id == id);
@@ -20,9 +20,13 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             return await result.FirstOrDefaultAsync();
         }
 
-        Task IApartmentService.GetApartments(Guid id)
+        public async Task<ApartmentResponse> GetApartments()
         {
-            throw new NotImplementedException();
+            var query = dbContext.Set<Apartment>();
+
+            var result = mapper.ProjectTo<ApartmentResponse>(query);
+
+            return await result.ToListAsync();
         }
 
         Task IApartmentService.Insert(Guid id)
