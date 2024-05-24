@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
 using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
@@ -20,11 +21,13 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             return await result.FirstOrDefaultAsync();
         }
 
-        public async Task<ApartmentResponse> GetApartments()
+        public async Task<List<ApartmentResponse>> GetApartments(SearchApartmentsRequest request)
         {
-            var query = dbContext.Set<Apartment>();
+            var query = dbContext.Set<Apartment>().AsQueryable();
 
-            var result = mapper.ProjectTo<ApartmentResponse>(query);
+            var result = mapper.ProjectTo<ApartmentResponse>(query)
+                .Skip(request.Paging.PageIndex * request.Paging.PageSize)
+                             .Take(request.Paging.PageSize);
 
             return await result.ToListAsync();
         }
