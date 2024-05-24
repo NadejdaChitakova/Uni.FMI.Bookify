@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Uni.FMI.Bookify.Core.Models\Uni.FMI.Bookify.Core.Models.csproj" />
     <ProjectReference Include="..\Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj" />
   </ItemGroup>
 

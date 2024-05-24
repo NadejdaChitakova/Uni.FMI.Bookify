@@ -1,5 +1,6 @@
 using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions;
+using Uni_FMI.Bookify.Core.Business;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddCore(builder.Configuration);
 var app = builder.Build();
 //app.SeedData();
 

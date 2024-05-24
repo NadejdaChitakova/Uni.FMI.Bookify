@@ -1,13 +1,23 @@
-﻿using Uni.FMI.Bookify.Infrastructure.Data;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Uni.FMI.Bookify.Core.Models.Models.Response;
+using Uni.FMI.Bookify.Infrastructure.Data;
+using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 
 namespace Uni_FMI.Bookify.Core.Business.Services
 {
-    public sealed class ApartmentService(IdentityCoreDbContext dbContext) : IApartmentService
+    public sealed class ApartmentService(IdentityCoreDbContext dbContext,
+                                        IMapper mapper) : IApartmentService
     {
-        Task IApartmentService.GetApartment(Guid id)
+        public async Task<ApartmentResponse> GetApartment(Guid id)
         {
-            throw new NotImplementedException();
+            var query =  dbContext.Set<Apartment>()
+                .Where(x => x.Id == id);
+
+            var result = mapper.ProjectTo<ApartmentResponse>(query);
+
+            return await result.FirstOrDefaultAsync();
         }
 
         Task IApartmentService.GetApartments(Guid id)

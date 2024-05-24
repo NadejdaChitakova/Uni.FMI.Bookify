@@ -135,6 +135,8 @@ ApartmentId = apartment.Id
 
                 context.Set<ApartmentAmenity>().Add(apartmentAmenity);
                 context.SaveChanges();
+                apartment.Amenities.Add(apartmentAmenity);
+                context.SaveChanges();
             }
         }
 

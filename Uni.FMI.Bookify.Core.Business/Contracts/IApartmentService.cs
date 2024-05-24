@@ -1,8 +1,10 @@
-﻿namespace Uni_FMI.Bookify.Core.Business.Contracts;
+﻿using Uni.FMI.Bookify.Core.Models.Models.Response;
+
+namespace Uni_FMI.Bookify.Core.Business.Contracts;
 
 public interface IApartmentService
 {
-    Task GetApartment(Guid id);
+    Task<ApartmentResponse> GetApartment(Guid id);
 
     Task GetApartments(Guid id);
 
