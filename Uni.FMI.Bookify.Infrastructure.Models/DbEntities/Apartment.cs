@@ -13,9 +13,11 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public DateTime? LastBookedOnUtc { get; internal set; }
 
-        public Money Price { get; init; }
+        public decimal Price { get; init; }
 
-        public Money CleaningFee { get; init; }
+        public decimal CleaningFee { get; init; }
+
+        public Currency Currency { get; init; }
 
         public Guid AddressId { get; init; }
 

@@ -14,13 +14,13 @@ namespace Uni.FMI.Bookify.Infrastructure.Models.DbEntities
 
         public DateRange Duration { get; init; }
 
-        public Money PriceForPeriod { get; init; }
+        public decimal PriceForPeriod { get; init; }
 
-        public Money CleaningFee { get; init; }
+        public decimal CleaningFee { get; init; }
 
-        public Money AmenitiesUpCharge { get; init; }
+        public decimal AmenitiesUpCharge { get; init; }
 
-        public Money TotalPrice { get; init; }
+        public decimal TotalPrice { get; init; }
 
         public BookingStatus Status { get; init; }
 

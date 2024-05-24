@@ -20,16 +20,6 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.Configurations
             builder.Property(apartment => apartment.LastBookedOnUtc)
                 .IsRequired(false);
 
-            builder.OwnsOne(apartment => apartment.Price, priceBuilder =>
-            {
-                priceBuilder.Property(money => money.Currency);
-            });
-
-            builder.OwnsOne(apartment => apartment.CleaningFee, priceBuilder =>
-            {
-                priceBuilder.Property(money => money.Currency);
-            });
-
             builder.HasOne(apartment => apartment.Address)
                 .WithOne(apartment => apartment.Apartment)
                 .HasForeignKey<Apartment>(apartment=> apartment.Id);

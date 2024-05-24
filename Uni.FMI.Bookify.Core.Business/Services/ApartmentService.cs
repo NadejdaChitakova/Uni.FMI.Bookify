@@ -1,12 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Uni.FMI.Bookify.Infrastructure.Data;
+using Uni_FMI.Bookify.Core.Business.Contracts;
 
 namespace Uni_FMI.Bookify.Core.Business.Services
 {
-    internal class ApartmentService
+    public sealed class ApartmentService(IdentityCoreDbContext dbContext) : IApartmentService
     {
+        Task IApartmentService.GetApartment(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IApartmentService.GetApartments(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IApartmentService.Insert(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IApartmentService.Update(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IApartmentService.Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

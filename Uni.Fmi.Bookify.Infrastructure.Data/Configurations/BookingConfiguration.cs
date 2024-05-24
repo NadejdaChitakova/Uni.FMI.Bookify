@@ -23,26 +23,6 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.Configurations
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.OwnsOne(booking => booking.Duration);
-
-            builder.OwnsOne(booking => booking.PriceForPeriod, priceBuilder =>
-            {
-                priceBuilder.Property(money => money.Currency);
-            });
-
-            builder.OwnsOne(booking => booking.CleaningFee, priceBuilder =>
-            {
-                priceBuilder.Property(money => money.Currency);
-            });
-
-            builder.OwnsOne(booking => booking.AmenitiesUpCharge, priceBuilder =>
-            {
-                priceBuilder.Property(money => money.Currency);
-            });
-
-            builder.OwnsOne(booking => booking.TotalPrice, priceBuilder =>
-            {
-                priceBuilder.Property(money => money.Currency);
-            });
         }
     }
 }
