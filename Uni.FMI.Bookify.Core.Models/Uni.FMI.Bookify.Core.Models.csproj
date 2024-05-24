@@ -11,4 +11,8 @@
     <PackageReference Include="AutoMapper.Collection" Version="10.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Uni.FMI.Bookify.Infrastructure.Models\Uni.FMI.Bookify.Infrastructure.Models.csproj" />
+  </ItemGroup>
+
 </Project>
