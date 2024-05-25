@@ -1,8 +1,17 @@
 using Uni.FMI.Bookify.Infrastructure.Data;
-using Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions;
 using Uni_FMI.Bookify.Core.Business;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowMyOrigin",
+                      builder =>
+                      {
+                          builder.WithOrigins("http://localhost:4200")
+                              .AllowAnyMethod()
+                              .AllowAnyHeader();
+                      });
+});
 
 // Add services to the container.
 
@@ -13,7 +22,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCore(builder.Configuration);
+
 var app = builder.Build();
+
 //app.SeedData();
 
 // Configure the HTTP request pipeline.
@@ -22,8 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
+app.UseCors("AllowMyOrigin");
 
 app.UseAuthorization();
 

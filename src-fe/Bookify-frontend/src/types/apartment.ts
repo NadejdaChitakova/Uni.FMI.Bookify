@@ -1,13 +1,14 @@
 import { Address } from "./address";
+import { Amenity } from "./amenity";
 
 export interface Apartment {
     id: any,
     name: string,
     description: string,
     address: Address,
-    ApartmentPhoto: string,
+    apartmentImage: string,
     price: number,
     cleaningFee: number,
     lastBookedOnUtc: Date,
-    amenities : string[]
+    amenities : Amenity[]
 }

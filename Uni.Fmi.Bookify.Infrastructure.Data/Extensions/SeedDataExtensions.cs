@@ -100,6 +100,8 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions
                 var amenities = InitializeAmenities();
                 context.Set<Amenity>().AddRange(amenities);
 
+                var addressId = Guid.NewGuid();
+
                 Apartment apartment = new()
                 {
                     Id = Guid.NewGuid(),
@@ -109,10 +111,10 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions
                     Price =150,
                     Currency = Currency.BGN,
                     Description = "The best apartment",
-                    
-                    Address = new Address()
+                    AddressId = addressId,
+                    Address = new()
                     {
-                        Id = new Guid(),
+                        Id = addressId,
                         City = "Plovdiv",
                         Street = "bul.Bulgaria 105",
                         CountryId = bulgaria.Id,

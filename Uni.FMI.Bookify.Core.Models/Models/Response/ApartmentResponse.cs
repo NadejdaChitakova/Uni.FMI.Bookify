@@ -20,6 +20,8 @@ public record ApartmentResponse
 
     public ApartmentImageResponse ApartmentImage { get; set; }
 
+    public AddressResponse Address { get; set; }
+
     public List<AmenityResponse> Amenities { get; set; }
 
 };

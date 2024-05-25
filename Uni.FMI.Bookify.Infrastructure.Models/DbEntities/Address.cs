@@ -2,7 +2,7 @@
 {
     public sealed class Address
     {
-        public Guid Id { get; init; }
+        public Guid Id { get; set; }
 
         public string City { get; init; }
 

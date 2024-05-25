@@ -9,6 +9,7 @@
         public string Street { get; init; }
 
         public Guid CountryId { get; init; }
+        public string CountryName { get; init; }
 
     }
 }

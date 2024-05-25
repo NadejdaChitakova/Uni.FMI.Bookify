@@ -1,6 +1,6 @@
 <p-card header="{{apartment.name}}" subheader="{{apartment.address.country}}" [style]="{ width: '360px' }">
   <ng-template pTemplate="header">
-      <img alt="Card" src="{{apartment.ApartmentPhoto}}" />
+      <img alt="Card" src="{{apartment.apartmentImage}}" />
   </ng-template>
   <p>
       {{apartment.description}}
@@ -8,6 +8,7 @@
   <ng-template pTemplate="footer">
       <div class="flex gap-3 mt-1">
           <p-button label="View" class="w-full" styleClass="w-full" />
+          <a [routerLink]="['apartments/edit', apartment.id]" pButton label="Edit" icon="pi pi-pencil"></a>
       </div>
   </ng-template>
 </p-card>

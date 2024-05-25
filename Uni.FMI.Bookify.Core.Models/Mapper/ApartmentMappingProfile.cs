@@ -13,10 +13,12 @@ namespace Uni.FMI.Bookify.Core.Models.Mapper
             CreateMap<Amenity, AmenityResponse>();
             CreateMap<ApartmentImage, ApartmentImageResponse>();
             CreateMap<ApartmentAmenity, ApartmentAmenityResponse>();
-            CreateMap<ApartmentAmenity, ApartmentAmenityResponse>();
 
             CreateMap<Apartment, ApartmentResponse>()
-                .ForMember(x=> x.Amenities, opt => opt.MapFrom(src=> src.Amenities.Select(y=> y.Amenity)));
+                .ForMember(x => x.Amenities, opt => opt.MapFrom(src => src.Amenities.Select(y => y.Amenity)))
+                .ForMember(x => x.Address, opt => opt.MapFrom(src => src.Address));
+            //.ForPath(x=> x.Address.CountryId, opt => opt.MapFrom(src=> src.Address.Country.Id));
+
         }
         }
     }
