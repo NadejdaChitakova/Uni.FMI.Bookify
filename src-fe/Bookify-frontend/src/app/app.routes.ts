@@ -4,7 +4,7 @@ import { EditApartmentComponent } from '../components/edit-apartment/edit-apartm
 import { ListApartmentsComponent } from '../components/list-apartments/list-apartments.component';
 
 export const routes: Routes = [
-   //{ path: '', component: ListApartmentsComponent },
+   { path: '', component: ListApartmentsComponent },
    { path: 'apartments/edit/:id', component: EditApartmentComponent }
 ];
 

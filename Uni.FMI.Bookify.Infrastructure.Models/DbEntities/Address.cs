@@ -4,9 +4,9 @@
     {
         public Guid Id { get; set; }
 
-        public string City { get; init; }
+        public string City { get; set; }
 
-        public string Street { get; init; }
+        public string Street { get; set; }
 
         public Guid CountryId { get; init; }
 

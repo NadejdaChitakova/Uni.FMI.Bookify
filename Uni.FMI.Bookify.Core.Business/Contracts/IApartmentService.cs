@@ -11,7 +11,7 @@ public interface IApartmentService
 
     Task Insert(Guid id);
 
-    Task Update(Guid id);
+    Task Update(UpdateApartmentRequest request);
 
     Task Delete(Guid id);
 

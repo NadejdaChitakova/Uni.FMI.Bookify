@@ -28,5 +28,13 @@ namespace Uni.FMI.Bookify.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("Update")]
+        public async Task<ActionResult> Update(UpdateApartmentRequest request)
+        {
+             await _apartmentService.Update(request);
+
+            return Ok();
+        }
     }
 }

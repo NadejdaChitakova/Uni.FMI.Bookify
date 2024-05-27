@@ -23,7 +23,7 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public Address Address { get; init; }
 
-        public ICollection<ApartmentAmenity> Amenities { get; init; }
+        public ICollection<ApartmentAmenity> Amenities { get; set; }
 
         public ICollection<ApartmentImage> ApartmentImages { get; set; }
 
