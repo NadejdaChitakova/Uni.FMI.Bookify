@@ -24,16 +24,6 @@ export class ListApartmentsComponent implements OnInit{
   constructor(private apartmentService: ApartmentService){}
 
   ngOnInit() {
-    // this.apartmentService.getApartments("99e5ce01-763e-42c4-a55f-ffb3b3c8a02d")
-    // .subscribe({
-    //   next: (data) => {
-    //     this.apartment = data;
-    //     console.log(this.apartment);
-    //   },
-    //   error: (error) => {
-    //     console.log(error, "test");
-    //   }
-    // });
 
     this.apartmentService.getAll(this.requestBody)
     .subscribe({
@@ -45,5 +35,7 @@ export class ListApartmentsComponent implements OnInit{
         console.log(error, "test");
       }
     });
+
+
   }
 }

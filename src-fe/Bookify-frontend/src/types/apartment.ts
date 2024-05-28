@@ -6,7 +6,7 @@ export interface Apartment {
     name: string,
     description: string,
     address: Address,
-    apartmentImage: string,
+    apartmentImages: File[],
     price: number,
     cleaningFee: number,
     lastBookedOnUtc: Date,

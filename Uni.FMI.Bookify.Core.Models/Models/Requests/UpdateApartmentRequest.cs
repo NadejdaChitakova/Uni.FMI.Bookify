@@ -10,7 +10,7 @@
 
         public string Street { get; init; }
 
-        public string CountryId { get; init; }
+        public Guid CountryId { get; init; }
 
         public string City { get; init; }
 
@@ -20,6 +20,6 @@
 
         public List<Guid> AmenitiesId { get; init; }
 
-        public List<UpdateImageRequest> Images { get; init; }
+        public List<Guid> Images { get; init; }
     }
 }

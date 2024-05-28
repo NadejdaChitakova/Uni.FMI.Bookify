@@ -8,7 +8,7 @@
 
         public string Street { get; set; }
 
-        public Guid CountryId { get; init; }
+        public Guid CountryId { get; set; }
 
         public Country Country { get; set; }
 

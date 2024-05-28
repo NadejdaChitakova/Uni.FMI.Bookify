@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Uni.FMI.Bookify.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Uni.FMI.Bookify.Infrastructure.Data;
 namespace Uni.FMI.Bookify.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(IdentityCoreDbContext))]
-    partial class IdentityCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240528112401_UpdateRelationship_Apartment_Image")]
+    partial class UpdateRelationship_Apartment_Image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

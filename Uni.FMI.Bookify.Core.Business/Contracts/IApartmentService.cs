@@ -1,4 +1,5 @@
-﻿using Uni.FMI.Bookify.Core.Models.Models.Requests;
+﻿using Microsoft.AspNetCore.Http;
+using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
 
 namespace Uni_FMI.Bookify.Core.Business.Contracts;
@@ -11,7 +12,9 @@ public interface IApartmentService
 
     Task Insert(Guid id);
 
-    Task Update(UpdateApartmentRequest request);
+    Task Update(UpdateApartmentRequest request, CancellationToken cancellationToken);
+
+    Task<List<Guid>> UploadPhoto(IFormFileCollection files, CancellationToken cancellationToken);
 
     Task Delete(Guid id);
 

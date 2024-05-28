@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
@@ -6,11 +7,13 @@ using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
 using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 using Uni_FMI.Bookify.Core.Business.Contracts;
+using Uni_FMI.Bookify.Core.Business.Utils;
 
 namespace Uni_FMI.Bookify.Core.Business.Services
 {
     public sealed class ApartmentService(IdentityCoreDbContext dbContext,
-                                        IMapper mapper) : IApartmentService
+                                        IMapper mapper,
+                                        IConvertPhotoService convertPhotoService) : IApartmentService
     {
         public async Task<ApartmentResponse?> GetApartment(Guid id)
         {
@@ -38,53 +41,62 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task Update(UpdateApartmentRequest request)
+        public async Task Update(UpdateApartmentRequest request, CancellationToken cancellationToken)
         {
             var entity = await dbContext.Set<Apartment>()
-                             .FindAsync(request.Id);
+                             .Include(x=> x.Address)
+                             .Include(x=> x.ApartmentImages)
+                             .FirstOrDefaultAsync(x=> x.Id == request.Id, cancellationToken);
 
             if (entity is null)
             {
                 //TODO include error model at result model
             }
 
+            var imagesToInsert = await dbContext.Set<ApartmentImage>()
+                .Where(x => request.Images.Contains(x.Id))
+                .ToListAsync(cancellationToken);
+
             var amenities = await dbContext.Set<Amenity>()
                 .Where(x => request.AmenitiesId.Contains(x.Id))
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
+dbContext.Set<ApartmentImage>()
+    .RemoveRange(entity.ApartmentImages);
+
+entity.Description = request.Description;
             entity.Address.City = request.City;
             entity.Address.Street = request.Street;
-            entity.Amenities = (ICollection<ApartmentAmenity>)amenities;
+            entity.Price = request.Price;
+            entity.CleaningFee = request.CleaningFee;
+imagesToInsert.ForEach(x=> entity.ApartmentImages.Add(x));
+            //entity.Amenities = (ICollection<ApartmentAmenity>)amenities;
+            
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
 
-            //всички снимки, които са за изтриване ( които не съдържат моите)
-            var photosForDelete = entity.ApartmentImages
-                .Select(x=>x .Id)
-                .Where(x => !request.Images.Select(y=> y.Id).Contains(x))
-                .ToList();
+        public async Task<List<Guid>> UploadPhoto(IFormFileCollection files, CancellationToken cancellationToken)
+        {
+            List<ApartmentImage> images = new();
 
-            photosForDelete.ForEach(x=> entity.ApartmentImages.Remove(entity.ApartmentImages.FirstOrDefault(y=> y.Id == x)));
+            foreach (var file in files) { 
 
-            if (request.Images.Exists(x=> x.Id is null))
-            {
-                List<ApartmentImage> photosForInsert = [];
-
-                request.Images.ForEach(x =>
+                byte[] content = await convertPhotoService.ConvertToByteArray(file, cancellationToken);
+                
+                images.Add(new ApartmentImage()
                 {
-                    if (x.Id is null)
-                    {
-                        photosForInsert.Add(new ApartmentImage()
-                        {
-                            Id = new Guid(),
-                            Content = x.Content,
-                            Extension = x.Extension
-                        });
-                    }
+                    Id = new Guid(),
+                    Extension = file.ContentType,
+                    Content = content
                 });
-
-                photosForInsert.ForEach(x=> entity.ApartmentImages.Add(x));
             }
 
-            await dbContext.SaveChangesAsync();
+await dbContext.Set<ApartmentImage>()
+    .AddRangeAsync(images, cancellationToken);
+
+await dbContext.SaveChangesAsync(cancellationToken);
+
+        return images.Select(x=> x.Id).ToList();
         }
 
         public async Task Delete(Guid id)

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Uni.FMI.Bookify.Core.Models.Mapper;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 using Uni_FMI.Bookify.Core.Business.Services;
+using Uni_FMI.Bookify.Core.Business.Utils;
 
 namespace Uni_FMI.Bookify.Core.Business
 {
@@ -13,6 +14,7 @@ namespace Uni_FMI.Bookify.Core.Business
             services.AddAutoMapperAndProfiles();
 
             services.AddScoped<IApartmentService, ApartmentService>();
+            services.AddScoped<IConvertPhotoService, ConvertPhotoService>();
             return services;
         }
         }

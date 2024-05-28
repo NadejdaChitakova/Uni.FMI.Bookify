@@ -9,19 +9,19 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public string Name { get; init; }
 
-        public string Description { get; init; }
+        public string Description { get; set; }
 
         public DateTime? LastBookedOnUtc { get; internal set; }
 
-        public decimal Price { get; init; }
+        public decimal Price { get; set; }
 
-        public decimal CleaningFee { get; init; }
+        public decimal CleaningFee { get; set; }
 
         public Currency Currency { get; init; }
 
         public Guid AddressId { get; init; }
 
-        public Address Address { get; init; }
+        public Address Address { get; set; }
 
         public ICollection<ApartmentAmenity> Amenities { get; set; }
 

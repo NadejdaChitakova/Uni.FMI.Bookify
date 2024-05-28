@@ -29,12 +29,24 @@ namespace Uni.FMI.Bookify.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("Update")]
-        public async Task<ActionResult> Update(UpdateApartmentRequest request)
+        [HttpPost("UploadPhoto")]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult> UploadPhoto([FromForm] IFormFileCollection request, CancellationToken cancellationToken = default)
         {
-             await _apartmentService.Update(request);
+            var files = HttpContext.Request.Form.Files;
+
+            var uploadedPhotos = await apartmentService.UploadPhoto(files, cancellationToken);
+
+            return Ok(uploadedPhotos);
+        }
+
+        [HttpPost("Update")]
+        public async Task<ActionResult> Update(UpdateApartmentRequest request, CancellationToken cancellationToken = default)
+        {
+             await _apartmentService.Update(request, cancellationToken);
 
             return Ok();
         }
+
     }
 }
