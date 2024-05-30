@@ -1,3 +1,4 @@
+import { ApartmentService } from './../../services/apartment.service';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -10,4 +11,9 @@ import { Component, Input } from '@angular/core';
 export class ApartmentImageComponent {
   @Input() apartmentImageId!: string;
 
+  constructor( private apartmentService: ApartmentService){}
+
+  DeletePhoto(apartmentImageId: string){
+    this.apartmentService.deletePhoto(apartmentImageId).subscribe();
+  }
 }

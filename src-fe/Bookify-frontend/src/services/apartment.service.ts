@@ -31,7 +31,7 @@ export class ApartmentService {
   }
 
   uploadImage(formData: FormData) : Observable<string[]>{
-    const url = "http://localhost:58314/api/Apartments/UploadPhoto";
+    const url = "http://localhost:58314/api/ApartmentImage/UploadPhoto";
 
     console.log("posting data")
     return this.http.post<string[]>(url, formData);
@@ -44,8 +44,15 @@ export class ApartmentService {
   }
 
   downloadApartmentImages(apartmentId: string) : Observable<any> {
-    const url = "http://localhost:58314/api/Apartments/GetApartmentImage?apartmentId="+apartmentId;
+    const url = "http://localhost:58314/api/ApartmentImage/GetApartmentImage?imageId="+apartmentId;
 
      return this.http.get<any>(url);
   }
+
+  deletePhoto(apartmentImageId: string) :Observable<any>{
+    const url = "http://localhost:58314/api/ApartmentImage/Delete?id="+apartmentImageId;
+    console.log("delete method")
+    return this.http.delete<any>(url);
+  }
+
 }

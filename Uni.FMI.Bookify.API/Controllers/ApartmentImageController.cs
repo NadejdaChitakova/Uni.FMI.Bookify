@@ -9,7 +9,7 @@ namespace Uni.FMI.Bookify.API.Controllers
     [EnableCors]
     public class ApartmentImageController(IApartmentImageService imageService) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet(nameof(GetApartmentImage))]
         public ActionResult GetApartmentImage(Guid imageId)
         {
             var imageResponse = imageService.GetById(imageId);
@@ -28,7 +28,7 @@ namespace Uni.FMI.Bookify.API.Controllers
             return Ok(uploadedPhotos);
         }
 
-        [HttpDelete]
+        [HttpDelete(nameof(Delete))]
         public ActionResult Delete(Guid id)
         {
             imageService.Delete(id);

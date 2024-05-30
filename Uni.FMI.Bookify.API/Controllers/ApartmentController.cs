@@ -36,7 +36,5 @@ namespace Uni.FMI.Bookify.API.Controllers
 
             return Ok();
         }
-
-
     }
 }

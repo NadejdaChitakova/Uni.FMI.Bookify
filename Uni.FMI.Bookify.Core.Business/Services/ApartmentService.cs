@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
@@ -61,9 +59,6 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             var amenities = await dbContext.Set<Amenity>()
                 .Where(x => request.AmenitiesId.Contains(x.Id))
                 .ToListAsync(cancellationToken);
-
-dbContext.Set<ApartmentImage>()
-    .RemoveRange(entity.ApartmentImages);
 
 entity.Description = request.Description;
             entity.Address.City = request.City;

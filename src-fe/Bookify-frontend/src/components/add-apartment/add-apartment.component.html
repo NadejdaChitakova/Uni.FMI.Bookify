@@ -1,0 +1,53 @@
+<form (ngSubmit)="onSubmit($event)">
+  <div class="p-field">
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="apartment.name" name="name" required>
+  </div>
+
+  <div class="p-field">
+    <label for="description">Description</label>
+    <textarea id="description" [(ngModel)]="apartment.description" name="description" required></textarea>
+  </div>
+
+  <div class="p-field">
+    <label for="address">Address</label>
+    <p-inputText [(ngModel)]="apartment.address.street" name="street" placeholder="Street"></p-inputText>
+    <p-inputText [(ngModel)]="apartment.address.city" name="city" placeholder="City"></p-inputText>
+    <p-inputText [(ngModel)]="apartment.address.country" name="postalCode" placeholder="Country"></p-inputText>
+  </div>
+
+  <div class="p-field">
+    <label for="apartmentImage">Apartment Images</label>
+    <p-fileUpload
+      mode="basic"
+      name="demo[]"
+      chooseIcon="pi pi-upload"
+      (onSelect)="onImageUpload($event)"
+      [auto]="true"
+      chooseLabel="Browse" />
+
+  @for (item of apartment.apartmentImage; track $index) {
+    <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
+  }
+  </div>
+
+  <div class="p-field">
+    <label for="imageUrl">Main Image URL (Optional)</label>
+    <input type="text" id="imageUrl" [(ngModel)]="apartment.imageUrl" name="imageUrl">
+  </div>
+
+  <div class="p-field">
+    <label for="price">Price</label>
+    <input type="number" id="price" [(ngModel)]="apartment.price" name="price" required>
+  </div>
+  <div class="pfield">
+    <label for="cleaningFee">Cleaning Fee</label>
+    <input type="number" id="cleaningFee" [(ngModel)]="apartment.cleaningFee" name="cleaningFee" required>
+  </div>
+  <div class="p-field">
+    <label for="lastBookedOnUtc">Last Booked On (UTC)</label>
+    <p-calendar [(ngModel)]="apartment.lastBookedOnUtc" name="lastBookedOnUtc" dateFormat="yyyy-MM-dd"></p-calendar>
+  </div>
+
+  <button type="submit" pButton label="Create Apartment"> </button>
+</form>

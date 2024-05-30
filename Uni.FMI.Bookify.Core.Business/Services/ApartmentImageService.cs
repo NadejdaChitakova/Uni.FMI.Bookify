@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
+using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 using Uni_FMI.Bookify.Core.Business.Utils;
 
 namespace Uni_FMI.Bookify.Core.Business.Services
 {
-    public sealed class ApartmentImageService(DbContext dbContext,
+    public sealed class ApartmentImageService(IdentityCoreDbContext dbContext,
         IMapper mapper,
         IConvertPhotoService convertPhotoService) : IApartmentImageService
     {
@@ -55,6 +55,8 @@ await dbContext.SaveChangesAsync(cancellationToken);
                 dbContext.Set<ApartmentImage>()
                     .Remove(image);
             }
+
+            dbContext.SaveChanges();
         }
     }
     }

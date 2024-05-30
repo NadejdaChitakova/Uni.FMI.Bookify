@@ -6,11 +6,14 @@ import { ApartmentComponent } from '../apartment/apartment.component';
 import { Apartment } from '../../types/apartment';
 import { SearchApartmentRequest } from '../../types/searchApartmentRequest';
 import { Paging } from '../../types/Paging';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-list-apartments',
   standalone: true,
-  imports: [HttpClientModule, ApartmentComponent],
+  imports: [HttpClientModule,
+      ApartmentComponent,
+      ButtonModule],
   templateUrl: './list-apartments.component.html',
   styleUrl: './list-apartments.component.css',
 })

@@ -25,7 +25,8 @@ import { ApartmentImageComponent } from '../apartment-image/apartment-image.comp
         FileUploadModule,
         ImageModule,
         ToastModule,
-        CommonModule, ApartmentImageComponent]
+        CommonModule,
+        ApartmentImageComponent]
 })
 
 export class EditApartmentComponent implements OnInit
@@ -46,7 +47,7 @@ export class EditApartmentComponent implements OnInit
         this.apartmentService.getApartments(id)
         .subscribe(apartment =>  {
           this.apartment = apartment
-          this.files = this.convertByteArrayToFile(this.apartment.id)
+          console.log(apartment)
     });
     }
   }
@@ -71,8 +72,6 @@ export class EditApartmentComponent implements OnInit
   }
 
   onImageUpload(event: FileSelectEvent) {
-    console.log(event)
-
     const formData = new FormData();
 
       for (let i = 0; i < event.files.length; i++) {
@@ -83,37 +82,12 @@ export class EditApartmentComponent implements OnInit
     this.apartmentService.uploadImage(formData)
       .subscribe({
         next: (data) => {
-          this.ids = data;
+          this.ids = [... this.ids, ...data];
           console.log(this.ids);
         },
         error: (error) => {
           console.log(error, "test");
         }
       });
-  }
-
-  convertByteArrayToFile(apartmetId : string) : any[]{
-    const imagesUrl: any[] = [];
-
-    // for (let i = 0; i < apartmetnImages.length; i++) {
-
-    //   const byteArray = apartmetnImages[i].content;
-    //   console.log(byteArray)
-    //   const blob = new Blob( [byteArray], {type: apartmetnImages[i].extension});
-
-    //   const fileName = "image";
-    //   const file = new File( [blob], fileName, {type : blob.type} )
-
-    //   images.push(file);
-
-    //   console.log(file)
-
-    //   // FileReader()
-    // }
-
-    this.apartmentService.downloadApartmentImages(apartmetId)
-      .subscribe();
-
-    return imagesUrl;
   }
 }
