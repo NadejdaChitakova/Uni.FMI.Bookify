@@ -19,7 +19,7 @@ export class ApartmentService {
   constructor(private http: HttpClient) { }
 
   getApartments(id:string) :Observable<Apartment> {
-    const url = "http://localhost:58314/api/Apartments/GetApartmentById?id=99e5ce01-763e-42c4-a55f-ffb3b3c8a02d";
+    const url = "http://localhost:58314/api/Apartments/GetApartmentById?id="+id;
 
      return this.http.get<Apartment>(url);
   }
@@ -41,5 +41,11 @@ export class ApartmentService {
     const url = "http://localhost:58314/api/Apartments/Update";
 
      return this.http.post<any>(url, request);
+  }
+
+  downloadApartmentImages(apartmentId: string) : Observable<any> {
+    const url = "http://localhost:58314/api/Apartments/GetApartmentImage?apartmentId="+apartmentId;
+
+     return this.http.get<any>(url);
   }
 }

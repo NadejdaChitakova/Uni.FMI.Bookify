@@ -18,7 +18,7 @@ public record ApartmentResponse
 
     public Currency Currency { get; init; }
 
-    public ApartmentImageResponse ApartmentImage { get; set; }
+    public List<ApartmentImageResponse> ApartmentImage { get; set; }
 
     public AddressResponse Address { get; set; }
 

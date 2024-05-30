@@ -11,20 +11,21 @@ import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
+import { ApartmentImageComponent } from '../apartment-image/apartment-image.component';
 
 @Component({
-  selector: 'app-edit-apartment',
-  standalone: true,
-  imports: [FormsModule,
-            InputTextModule,
-            ButtonModule,
-            InputTextareaModule,
-            FileUploadModule,
-            ImageModule,
-            ToastModule,
-            CommonModule],
-  templateUrl: './edit-apartment.component.html',
-  styleUrl: './edit-apartment.component.css'
+    selector: 'app-edit-apartment',
+    standalone: true,
+    templateUrl: './edit-apartment.component.html',
+    styleUrl: './edit-apartment.component.css',
+    imports: [FormsModule,
+        InputTextModule,
+        ButtonModule,
+        InputTextareaModule,
+        FileUploadModule,
+        ImageModule,
+        ToastModule,
+        CommonModule, ApartmentImageComponent]
 })
 
 export class EditApartmentComponent implements OnInit
@@ -45,7 +46,7 @@ export class EditApartmentComponent implements OnInit
         this.apartmentService.getApartments(id)
         .subscribe(apartment =>  {
           this.apartment = apartment
-          this.files = this.apartment.apartmentImages
+          this.files = this.convertByteArrayToFile(this.apartment.id)
     });
     }
   }
@@ -89,5 +90,30 @@ export class EditApartmentComponent implements OnInit
           console.log(error, "test");
         }
       });
+  }
+
+  convertByteArrayToFile(apartmetId : string) : any[]{
+    const imagesUrl: any[] = [];
+
+    // for (let i = 0; i < apartmetnImages.length; i++) {
+
+    //   const byteArray = apartmetnImages[i].content;
+    //   console.log(byteArray)
+    //   const blob = new Blob( [byteArray], {type: apartmetnImages[i].extension});
+
+    //   const fileName = "image";
+    //   const file = new File( [blob], fileName, {type : blob.type} )
+
+    //   images.push(file);
+
+    //   console.log(file)
+
+    //   // FileReader()
+    // }
+
+    this.apartmentService.downloadApartmentImages(apartmetId)
+      .subscribe();
+
+    return imagesUrl;
   }
 }

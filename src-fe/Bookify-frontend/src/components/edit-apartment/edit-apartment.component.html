@@ -25,6 +25,9 @@
     accept="image/*"
     maxFileSize="1000000">
         <ng-template pTemplate="content">
+          @if(true) {
+            <ul></ul>
+          }
           @if (files?.length) {
             <ul>
               @for (file of files; track $index) {
@@ -38,6 +41,7 @@
         </ng-template>
 </p-fileUpload>
 
+<app-apartment-image [apartmentImageId]="apartment.apartmentImage[0].id"></app-apartment-image>
   <!-- <div class="image-preview">
     <input type="file" pInputText (change)="onImageChange($event)" accept="image/*" />
     <img *ngIf="previewImage" [src]="previewImage" alt="Selected Image Preview">

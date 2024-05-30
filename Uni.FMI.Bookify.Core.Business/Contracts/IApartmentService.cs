@@ -14,8 +14,6 @@ public interface IApartmentService
 
     Task Update(UpdateApartmentRequest request, CancellationToken cancellationToken);
 
-    Task<List<Guid>> UploadPhoto(IFormFileCollection files, CancellationToken cancellationToken);
-
     Task Delete(Guid id);
 
 }

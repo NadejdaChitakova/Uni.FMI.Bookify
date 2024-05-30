@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Runtime.InteropServices.ComTypes;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
@@ -73,30 +74,6 @@ imagesToInsert.ForEach(x=> entity.ApartmentImages.Add(x));
             //entity.Amenities = (ICollection<ApartmentAmenity>)amenities;
             
             await dbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task<List<Guid>> UploadPhoto(IFormFileCollection files, CancellationToken cancellationToken)
-        {
-            List<ApartmentImage> images = new();
-
-            foreach (var file in files) { 
-
-                byte[] content = await convertPhotoService.ConvertToByteArray(file, cancellationToken);
-                
-                images.Add(new ApartmentImage()
-                {
-                    Id = new Guid(),
-                    Extension = file.ContentType,
-                    Content = content
-                });
-            }
-
-await dbContext.Set<ApartmentImage>()
-    .AddRangeAsync(images, cancellationToken);
-
-await dbContext.SaveChangesAsync(cancellationToken);
-
-        return images.Select(x=> x.Id).ToList();
         }
 
         public async Task Delete(Guid id)

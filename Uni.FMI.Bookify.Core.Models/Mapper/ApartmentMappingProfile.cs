@@ -23,7 +23,8 @@ namespace Uni.FMI.Bookify.Core.Models.Mapper
 
             CreateMap<Apartment, ApartmentResponse>()
                 .ForMember(x => x.Amenities, opt => opt.MapFrom(src => src.Amenities.Select(y => y.Amenity)))
-                .ForMember(x => x.Address, opt => opt.MapFrom(src => src.Address));
+                .ForMember(x => x.Address, opt => opt.MapFrom(src => src.Address))
+                .ForMember(x => x.ApartmentImage, opt => opt.MapFrom(src => src.ApartmentImages));
 
 
             CreateMap<ApartmentResponse, Apartment>()

@@ -29,17 +29,6 @@ namespace Uni.FMI.Bookify.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("UploadPhoto")]
-        [Consumes("multipart/form-data")]
-        public async Task<ActionResult> UploadPhoto([FromForm] IFormFileCollection request, CancellationToken cancellationToken = default)
-        {
-            var files = HttpContext.Request.Form.Files;
-
-            var uploadedPhotos = await apartmentService.UploadPhoto(files, cancellationToken);
-
-            return Ok(uploadedPhotos);
-        }
-
         [HttpPost("Update")]
         public async Task<ActionResult> Update(UpdateApartmentRequest request, CancellationToken cancellationToken = default)
         {
@@ -47,6 +36,7 @@ namespace Uni.FMI.Bookify.API.Controllers
 
             return Ok();
         }
+
 
     }
 }
