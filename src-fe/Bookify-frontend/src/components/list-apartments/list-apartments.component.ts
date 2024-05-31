@@ -7,13 +7,15 @@ import { Apartment } from '../../types/apartment';
 import { SearchApartmentRequest } from '../../types/searchApartmentRequest';
 import { Paging } from '../../types/Paging';
 import { ButtonModule } from 'primeng/button';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-list-apartments',
   standalone: true,
   imports: [HttpClientModule,
       ApartmentComponent,
-      ButtonModule],
+      ButtonModule,
+      RouterModule],
   templateUrl: './list-apartments.component.html',
   styleUrl: './list-apartments.component.css',
 })

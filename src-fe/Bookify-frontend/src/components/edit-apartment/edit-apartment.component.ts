@@ -12,6 +12,8 @@ import { ImageModule } from 'primeng/image';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { ApartmentImageComponent } from '../apartment-image/apartment-image.component';
+import { Router, RouterLink } from '@angular/router';
+
 
 @Component({
     selector: 'app-edit-apartment',
@@ -26,7 +28,8 @@ import { ApartmentImageComponent } from '../apartment-image/apartment-image.comp
         ImageModule,
         ToastModule,
         CommonModule,
-        ApartmentImageComponent]
+        ApartmentImageComponent,
+        RouterLink]
 })
 
 export class EditApartmentComponent implements OnInit

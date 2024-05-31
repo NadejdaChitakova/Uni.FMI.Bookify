@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CarouselModule } from 'primeng/carousel';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ApartmentImageComponent } from '../apartment-image/apartment-image.component';
 
 @Component({
@@ -15,11 +16,12 @@ import { ApartmentImageComponent } from '../apartment-image/apartment-image.comp
   standalone: true,
   imports: [FormsModule,
     FileUploadModule,
-    InputTextModule,
     CarouselModule,
     CalendarModule,
     ButtonModule,
-    ApartmentImageComponent
+    ApartmentImageComponent,
+    InputTextModule,
+    InputTextareaModule
   ],
   templateUrl: './add-apartment.component.html',
   styleUrl: './add-apartment.component.css'
