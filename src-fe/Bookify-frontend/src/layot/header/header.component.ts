@@ -23,7 +23,17 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Apartments',
         icon: 'pi pi-fw pi-plus',
-        routerLink: ""
+        routerLink: "/"
+      },
+      {
+        label: 'Login',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: "login"
+      },
+      {
+        label: 'Registration',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: "registration"
       },
     ]
   }
