@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Uni.FMI.Bookify.Core.Models.Authentication;
 using Uni.FMI.Bookify.Infrastructure.Data;
+using Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions;
 using Uni_FMI.Bookify.Core.Business;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCore(builder.Configuration);
 
@@ -34,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseCors("AllowMyOrigin");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
