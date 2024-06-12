@@ -16,6 +16,7 @@ export class ApartmentComponent implements OnInit {
   @Input() apartment!: Apartment;
 
   ngOnInit(): void {
+    console.log(this.apartment);
     this.apartment.imageUrl = this.getApartmentImage(this.apartment);
   }
 

@@ -26,14 +26,9 @@
       [auto]="true"
       chooseLabel="Browse" />
 
-  @for (item of apartment.apartmentImage; track $index) {
-    <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
-  }
-  </div>
-
-  <div class="p-field">
-    <label for="imageUrl">Main Image URL (Optional)</label>
-    <input type="text" id="imageUrl" [(ngModel)]="apartment.imageUrl" name="imageUrl">
+    @for (item of apartment.apartmentImages; track $index) {
+      <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
+    }
   </div>
 
   <div class="p-field">

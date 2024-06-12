@@ -19,7 +19,7 @@
   <label for="apartmentImage">Apartment Image</label>
   <div class="card flex justify-content-center"></div>
 
-  @for (item of apartment.apartmentImage; track $index) {
+  @for (item of apartment.apartmentImages; track $index) {
     <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
   }
 

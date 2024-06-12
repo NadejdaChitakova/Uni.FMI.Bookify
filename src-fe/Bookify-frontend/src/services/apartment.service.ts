@@ -6,6 +6,8 @@ import { Apartment } from '../types/apartment';
 import { Apartments } from '../types/apartments';
 import { HttpHeaders } from '@angular/common/http';
 import { UpdateApartmentRequest } from '../types/UpdateApartmentRequest';
+import { Login } from '../types/login';
+import { RegisterUser } from '../types/registerUser';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +53,19 @@ export class ApartmentService {
 
   deletePhoto(apartmentImageId: string) :Observable<any>{
     const url = "http://localhost:58314/api/ApartmentImage/Delete?id="+apartmentImageId;
-    console.log("delete method")
+
     return this.http.delete<any>(url);
   }
 
+  login(login: Login): Observable<any>{
+    const url = "http://localhost:58314/api/Users/Login";
+
+    return this.http.post<any>(url,login);
+  }
+
+  registration(registration: RegisterUser): Observable<any>{
+    const url = "http://localhost:58314/api/Users/Registration";
+
+    return this.http.post<any>(url,registration);
+  }
 }

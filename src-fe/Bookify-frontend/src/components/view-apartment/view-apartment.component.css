@@ -1,0 +1,85 @@
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.p-field {
+  margin-bottom: 1.5rem;
+}
+
+.p-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.p-field input,
+.p-field textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.p-field input[type="text"],
+.p-field input[type="number"] {
+  margin-bottom: 0.5rem;
+}
+
+.p-field input::placeholder,
+.p-field textarea::placeholder {
+  color: #aaa;
+}
+
+.apartment-images-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #e7e7e7;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.submit-button,
+.back-button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.back-button {
+  display: block;
+  text-align: center;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}

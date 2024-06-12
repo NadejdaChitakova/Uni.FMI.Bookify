@@ -1,0 +1,30 @@
+a {
+  margin: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.buttons-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.price-container {
+  display: flex;
+  align-items: center;
+}
+.price {
+  font-weight: bold;
+  color: #000;
+}
+
+.apartments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adjust the gap as needed */
+}

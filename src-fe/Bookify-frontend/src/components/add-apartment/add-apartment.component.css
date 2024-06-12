@@ -1,0 +1,89 @@
+/* Basic reset and box-sizing for consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styling the form container */
+form {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling each field */
+.p-field {
+  margin-bottom: 20px;
+}
+
+.p-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Styling input fields and textarea */
+.p-field input[type="text"],
+.p-field input[type="number"],
+.p-field textarea,
+p-inputText,
+p-calendar {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #555;
+}
+
+.p-field textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Styling p-inputText components */
+p-inputText {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Styling the file upload */
+.p-field p-fileUpload {
+  margin-top: 10px;
+}
+
+/* Styling the submit button */
+button[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Address fields styled to be inline */
+.p-field p-inputText {
+  display: inline-block;
+  width: calc(33% - 10px);
+  margin-right: 15px;
+}
+
+.p-field p-inputText:last-child {
+  margin-right: 0;
+}

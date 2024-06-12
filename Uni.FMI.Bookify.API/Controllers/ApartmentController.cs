@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Uni.FMI.Bookify.Core.Models.Authentication;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 
@@ -9,7 +10,7 @@ namespace Uni.FMI.Bookify.API.Controllers
     [ApiController]
     [Route("api/Apartments")]
     [EnableCors]
-    [Authorize]
+    //[Authorize]
     public class ApartmentController(IApartmentService apartmentService) : ControllerBase
     {
         //private readonly ILogger<ApartmentController> _logger;

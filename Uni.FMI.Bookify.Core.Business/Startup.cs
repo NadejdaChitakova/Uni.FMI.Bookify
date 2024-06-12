@@ -17,7 +17,7 @@ namespace Uni_FMI.Bookify.Core.Business
             services.AddScoped<IConvertPhotoService, ConvertPhotoService>();
             services.AddScoped<IApartmentImageService, ApartmentImageService>();
             services.AddScoped<IJwtProvider, JwtProvider>();
-            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

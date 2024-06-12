@@ -7,7 +7,7 @@ export interface Apartment {
     name: string,
     description: string,
     address: Address,
-    apartmentImage: ApartmentImageResponse[],
+    apartmentImages: ApartmentImageResponse[],
     imageUrl : string,
     price: number,
     cleaningFee: number,

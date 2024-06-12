@@ -1,14 +1,19 @@
-<p-card header="{{apartment.name}}" subheader="{{apartment.address.country}}" [style]="{ width: '360px' }">
+<p-card class="apartments-container" header="{{apartment.name}}" subheader="{{apartment.address.country}}" [style]="{ width: '360px' }">
   <ng-template pTemplate="header">
-    <img src="http://localhost:58314/api/ApartmentImage/GetApartmentImage?imageId={{apartment.apartmentImage[0].id}}">
+    <img src="http://localhost:58314/api/ApartmentImage/GetApartmentImage?imageId={{apartment.apartmentImages[0].id}}" width="100" height="300">
   </ng-template>
   <p>
       {{apartment.description}}
   </p>
   <ng-template pTemplate="footer">
-      <div class="flex gap-3 mt-1">
-          <a [routerLink]="['apartments/edit', apartment.id]" pButton label="Edit" icon="pi pi-pencil"></a>
-          <a [routerLink]="['apartments/view', apartment.id]" pButton label="View" icon="pi pi-pencil"></a>
+      <div class="footer-container">
+          <div class="buttons-container">
+              <a [routerLink]="['apartments/edit', apartment.id]" pButton label="Edit" icon="pi pi-pencil" ></a>
+              <a [routerLink]="['apartments/view', apartment.id]" pButton label="View" icon="pi pi-eye"></a>
+          </div>
+          <div class="price-container">
+              <span class="price">{{apartment.price}}лв</span>
+          </div>
       </div>
   </ng-template>
 </p-card>
