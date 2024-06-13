@@ -1,3 +1,5 @@
+
+<h2 style="text-align: center;">Add apartment</h2>
 <form (ngSubmit)="onSubmit($event)">
   <div class="p-field">
     <label for="name">Name</label>
@@ -11,33 +13,35 @@
 
   <div class="p-field">
     <label for="address">Address</label>
-    <p-inputText [(ngModel)]="apartment.address.street" name="street" placeholder="Street"></p-inputText>
-    <p-inputText [(ngModel)]="apartment.address.city" name="city" placeholder="City"></p-inputText>
-    <p-inputText [(ngModel)]="apartment.address.country" name="postalCode" placeholder="Country"></p-inputText>
+    <input type="text"  [(ngModel)]="apartment.address.street" name="street" placeholder="Street">
+    <input type="text"  [(ngModel)]="apartment.address.city" name="city" placeholder="City">
   </div>
 
   <div class="p-field">
-    <label for="apartmentImage">Apartment Images</label>
-    <p-fileUpload
-      mode="basic"
-      name="demo[]"
-      chooseIcon="pi pi-upload"
-      (onSelect)="onImageUpload($event)"
-      [auto]="true"
-      chooseLabel="Browse" />
-
-    @for (item of apartment.apartmentImages; track $index) {
-      <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
-    }
-  </div>
+    <label for="apartmentImage">Apartment Image</label>
+      <div class="card flex justify-content-center">
+        <p-fileUpload
+        mode="basic"
+        name="demo[]"
+        chooseIcon="pi pi-upload"
+        (onSelect)="onImageUpload($event)"
+        [auto]="true"
+        chooseLabel="Browse" />
+      </div>
+    </div>
+    <div style="background-color: #f8f9fa; padding: 20px; border-top: 1px solid #e7e7e7; border-radius: 10px;">
+      @for (item of apartment.apartmentImages; track $index) {
+        <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
+      }
+    </div>
 
   <div class="p-field">
     <label for="price">Price</label>
     <input type="number" id="price" [(ngModel)]="apartment.price" name="price" required>
   </div>
-  <div class="pfield">
-    <label for="cleaningFee">Cleaning Fee</label>
-    <input type="number" id="cleaningFee" [(ngModel)]="apartment.cleaningFee" name="cleaningFee" required>
+  <div class="p-field">
+    <label for="price">Cleaning fee</label>
+    <input type="number" id="price" [(ngModel)]="apartment.cleaningFee" name="price" required>
   </div>
   <div class="p-field">
     <label for="lastBookedOnUtc">Last Booked On (UTC)</label>

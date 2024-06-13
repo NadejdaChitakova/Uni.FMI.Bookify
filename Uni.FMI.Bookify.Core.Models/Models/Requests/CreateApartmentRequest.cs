@@ -1,7 +1,8 @@
-﻿using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
+﻿using Uni.FMI.Bookify.Core.Models.NewFolder.Requests;
+using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
 using Uni.FMI.Bookify.Insrastructure.Models.Common;
 
-namespace Uni.FMI.Bookify.Core.Models.NewFolder.Requests
+namespace Uni.FMI.Bookify.Core.Models.Models.Requests
 {
     public record CreateApartmentRequest
     {
@@ -17,9 +18,7 @@ namespace Uni.FMI.Bookify.Core.Models.NewFolder.Requests
 
         public Currency Currency { get; init; }
 
-        public List<Amenity> Amenities { get; init; }
-
-        public List<UploadApartmentPhoto> ApartmentPhotos { get; set; }
+        public List<Guid> ApartmentPhotosIds { get; set; }
 
     }
 }

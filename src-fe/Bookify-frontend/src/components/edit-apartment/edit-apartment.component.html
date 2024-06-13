@@ -18,16 +18,16 @@
 
     <div class="p-field">
       <label for="apartmentImage">Apartment Image</label>
-    <div class="card flex justify-content-center">
-      <p-fileUpload
+        <div class="card flex justify-content-center">
+          <p-fileUpload
           mode="basic"
           name="demo[]"
           chooseIcon="pi pi-upload"
           (onSelect)="onImageUpload($event)"
           [auto]="true"
           chooseLabel="Browse" />
-    </div>
-    </div>
+        </div>
+      </div>
       <div style="background-color: #f8f9fa; padding: 20px; border-top: 1px solid #e7e7e7; border-radius: 10px;">
         @for (item of apartment.apartmentImages; track $index) {
           <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>

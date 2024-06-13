@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    RouterModule
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'

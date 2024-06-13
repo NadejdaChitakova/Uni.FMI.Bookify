@@ -1,40 +1,47 @@
-import { Component } from '@angular/core';
-import { Address } from '../../types/address';
-import { Apartment } from '../../types/apartment';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApartmentService } from '../../services/apartment.service';
-import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
+import { Apartment } from '../../types/apartment';
 import { FormsModule } from '@angular/forms';
+import { UpdateApartmentRequest } from '../../types/UpdateApartmentRequest';
 import { InputTextModule } from 'primeng/inputtext';
-import { CarouselModule } from 'primeng/carousel';
-import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
+import { ImageModule } from 'primeng/image';
+import { ToastModule } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
 import { ApartmentImageComponent } from '../apartment-image/apartment-image.component';
+import { Router, RouterLink } from '@angular/router';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-add-apartment',
   standalone: true,
-  imports: [FormsModule,
-    FileUploadModule,
-    CarouselModule,
-    CalendarModule,
-    ButtonModule,
-    ApartmentImageComponent,
+  imports: [
+    FormsModule,
     InputTextModule,
-    InputTextareaModule
+    ButtonModule,
+    InputTextareaModule,
+    FileUploadModule,
+    ImageModule,
+    ToastModule,
+    CommonModule,
+    ApartmentImageComponent,
+    RouterLink,
+    CalendarModule
   ],
   templateUrl: './add-apartment.component.html',
   styleUrl: './add-apartment.component.css'
 })
 export class AddApartmentComponent {
-  address: Address = {country: "", street: "", city: ""};
-  apartment!: Apartment ;
+  apartment: Apartment = {address : {city: "", street: ""}} as Apartment;
   ids: string[] = [];
 
  constructor(private apartmentService: ApartmentService) {}
 
  onSubmit(evet : Event){
-
+  //insert
  }
 
  onImageUpload(event: FileSelectEvent) {

@@ -20,7 +20,8 @@ import { Router, RouterLink } from '@angular/router';
     standalone: true,
     templateUrl: './edit-apartment.component.html',
     styleUrl: './edit-apartment.component.css',
-    imports: [FormsModule,
+    imports: [
+        FormsModule,
         InputTextModule,
         ButtonModule,
         InputTextareaModule,

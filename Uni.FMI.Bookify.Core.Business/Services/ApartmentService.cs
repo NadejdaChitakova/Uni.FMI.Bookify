@@ -2,26 +2,29 @@
 using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
+using Uni.FMI.Bookify.Core.Models.NewFolder.Requests;
 using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
 using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 using Uni_FMI.Bookify.Core.Business.Utils;
+using Address = Uni.FMI.Bookify.Insrastructure.Models.DbEntities.Address;
 
 namespace Uni_FMI.Bookify.Core.Business.Services
 {
-    public sealed class ApartmentService(IdentityCoreDbContext dbContext,
+    public sealed class ApartmentService(
+        IdentityCoreDbContext dbContext,
                                         IMapper mapper,
                                         IConvertPhotoService convertPhotoService) : IApartmentService
     {
-        public async Task<ApartmentResponse?> GetApartment(Guid id)
+        public ApartmentResponse? GetApartment(Guid id)
         {
             var query =  dbContext.Set<Apartment>()
                 .Where(x => x.Id == id);
 
             var result = mapper.ProjectTo<ApartmentResponse>(query);
 
-            return await result.FirstOrDefaultAsync();
+            return result.FirstOrDefault();
         }
 
         public async Task<List<ApartmentResponse>> GetApartments(SearchApartmentsRequest request)
@@ -35,9 +38,33 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             return await result.ToListAsync();
         }
 
-        Task IApartmentService.Insert(Guid id)
+        public async Task Insert(CreateApartmentRequest request)
         {
-            throw new NotImplementedException();
+            var entity = new Apartment()
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Address = new Address()
+                {
+                    City = request.Address.City,
+                    Street = request.Address.Street
+                },
+                Price = request.Price,
+                CleaningFee = request.CleaningFee,
+            };
+
+            dbContext.Set<Apartment>()
+                .Add(entity);
+
+            await dbContext.SaveChangesAsync();
+
+            var imagesToInsert = dbContext.Set<ApartmentImage>()
+                                     .Where(x => request.ApartmentPhotosIds.Contains(x.Id))
+                                     .ToList();
+            imagesToInsert.ForEach(x => entity.ApartmentImages.Add(x));
+
+            await dbContext.SaveChangesAsync();
+
         }
 
         public async Task Update(UpdateApartmentRequest request, CancellationToken cancellationToken)
