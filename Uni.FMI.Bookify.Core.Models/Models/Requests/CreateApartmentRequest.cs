@@ -16,7 +16,7 @@ namespace Uni.FMI.Bookify.Core.Models.Models.Requests
 
         public Address Address { get; init; }
 
-        public Currency Currency { get; init; }
+        public Currency Currency { get; init; } = Currency.BGN;
 
         public List<Guid> ApartmentPhotosIds { get; set; }
 

@@ -35,7 +35,7 @@ namespace Uni.FMI.Bookify.API.Controllers
         [HttpPost("Create")]
         public async Task<ActionResult> Insert(CreateApartmentRequest request)
         {
- //await _apartmentService.Insert(request);
+ await _apartmentService.Insert(request);
 
             return Ok();
         }

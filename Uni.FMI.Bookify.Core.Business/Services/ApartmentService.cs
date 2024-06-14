@@ -5,6 +5,7 @@ using Uni.FMI.Bookify.Core.Models.Models.Response;
 using Uni.FMI.Bookify.Core.Models.NewFolder.Requests;
 using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
+using Uni.FMI.Bookify.Insrastructure.Models.Common;
 using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 using Uni_FMI.Bookify.Core.Business.Utils;
@@ -40,18 +41,27 @@ namespace Uni_FMI.Bookify.Core.Business.Services
 
         public async Task Insert(CreateApartmentRequest request)
         {
+            var addressId= Guid.NewGuid();
+
             var entity = new Apartment()
             {
+                Id = Guid.NewGuid(),
                 Name = request.Name,
                 Description = request.Description,
-                Address = new Address()
+                AddressId = addressId,
+                Address = new()
                 {
-                    City = request.Address.City,
-                    Street = request.Address.Street
+                    Id = addressId,
+                    City = "Plovdiv",
+                    Street = "bul.Bulgaria 105",
+                    CountryId = Guid.Parse("178892d1-4b13-48b0-aa92-2fd50e0a1cb3"),
                 },
                 Price = request.Price,
                 CleaningFee = request.CleaningFee,
+                OwnewId = "d30466cd-eec5-473e-b8bd-772af9c888f7"
             };
+
+            await dbContext.SaveChangesAsync();
 
             dbContext.Set<Apartment>()
                 .Add(entity);
@@ -61,6 +71,9 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             var imagesToInsert = dbContext.Set<ApartmentImage>()
                                      .Where(x => request.ApartmentPhotosIds.Contains(x.Id))
                                      .ToList();
+
+            entity.ApartmentImages = new List<ApartmentImage>();
+
             imagesToInsert.ForEach(x => entity.ApartmentImages.Add(x));
 
             await dbContext.SaveChangesAsync();

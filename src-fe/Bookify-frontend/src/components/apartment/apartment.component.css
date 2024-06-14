@@ -24,7 +24,11 @@ a {
 }
 
 .apartments-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Adjust the gap as needed */
+  /* display: flex;
+  flex-direction: row; */
+  /* gap: 20px; Adjust the gap as needed */
+  /* flex-wrap: wrap; */
+  width: 360px;
+  margin: 5px;
+  padding: 5px;
 }

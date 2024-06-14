@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { UpdateApartmentRequest } from '../types/UpdateApartmentRequest';
 import { Login } from '../types/login';
 import { RegisterUser } from '../types/registerUser';
+import { InsertApartment } from '../types/insertApartment';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,12 @@ export class ApartmentService {
 
     console.log("posting data")
     return this.http.post<string[]>(url, formData);
+  }
+
+  insert(request: InsertApartment) : Observable<any> {
+    const url = "http://localhost:58314/api/Apartments/Create";
+
+     return this.http.post<any>(url, request);
   }
 
   update(request: UpdateApartmentRequest) : Observable<any> {

@@ -43,10 +43,6 @@
     <label for="price">Cleaning fee</label>
     <input type="number" id="price" [(ngModel)]="apartment.cleaningFee" name="price" required>
   </div>
-  <div class="p-field">
-    <label for="lastBookedOnUtc">Last Booked On (UTC)</label>
-    <p-calendar [(ngModel)]="apartment.lastBookedOnUtc" name="lastBookedOnUtc" dateFormat="yyyy-MM-dd"></p-calendar>
-  </div>
 
   <button type="submit" pButton label="Create Apartment"> </button>
 </form>

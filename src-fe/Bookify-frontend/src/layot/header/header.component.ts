@@ -1,6 +1,7 @@
+import { AuthService } from './../../services/auth.service';
 import { MenubarModule } from 'primeng/menubar';
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
 
 @Component({
   selector: 'header',
@@ -14,6 +15,8 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit {
   items: MenuItem[] | undefined;
 
+  constructor(private authService: AuthService) {}
+
   ngOnInit(): void {
     this.items = [
       {
@@ -24,19 +27,32 @@ export class HeaderComponent implements OnInit {
         label: 'Apartments',
         icon: 'pi pi-fw pi-plus',
         routerLink: "/"
-      },
-      {
-        label: 'Login',
-        icon: 'pi pi-fw pi-plus',
-        routerLink: "login"
-      },
-      {
-        label: 'Registration',
-        icon: 'pi pi-fw pi-plus',
-        routerLink: "registration"
-      },
+      }
     ]
-  }
+    if(!this.authService.isLoggedIn()){
+      this.items.push(
+        {
+          label: 'Login',
+          icon: 'pi pi-fw pi-plus',
+          routerLink: "login"
+        })
+        this.items.push({
+          label: 'Registration',
+          icon: 'pi pi-fw pi-plus',
+          routerLink: "registration"
+        })
+    }
 
+    if(this.authService.isLoggedIn()){
+      this.items.push(
+        {
+          label: 'Logout',
+          icon: 'pi pi-fw pi-plus',
+          command: () => this.authService.logout()
+
+        })
+    }
+  }
 }
+
 

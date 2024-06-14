@@ -1,4 +1,4 @@
-<p-card class="apartments-container" header="{{apartment.name}}" subheader="{{apartment.address.country}}" [style]="{ width: '360px' }">
+<p-card class="apartments-container" header="{{apartment.name}}" subheader="{{apartment.address.country}}" >
   <ng-template pTemplate="header">
     <img src="http://localhost:58314/api/ApartmentImage/GetApartmentImage?imageId={{apartment.apartmentImages[0].id}}" width="100" height="300">
   </ng-template>

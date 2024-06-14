@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Login } from '../types/login';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Login } from '../types/login';
 export class AuthService {
 
   httpClient = inject(HttpClient);
+  router = inject(Router)
   constructor() { }
 
   setToken(token: string | null) {
@@ -29,7 +31,7 @@ export class AuthService {
   }
 
   isLoggedIn(){
-    console.log(this.getToken())
+    console.log("is logged in: " + this.getToken() !== null)
     return this.getToken() !== null;
   }
 
@@ -39,10 +41,16 @@ export class AuthService {
     this.httpClient.post<any>(url,login).subscribe({
       next: (data) => {
         this.setToken(data);
+        this.router.navigate(["/"])
       },
       error: (err) => {
         this.setToken(null)
       }
     });
+  }
+
+  logout(){
+    this.setToken(null);
+    this.router.navigate(["/login"])
   }
 }
