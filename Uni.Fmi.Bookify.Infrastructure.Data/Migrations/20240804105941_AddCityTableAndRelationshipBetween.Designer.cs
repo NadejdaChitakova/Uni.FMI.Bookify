@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Uni.FMI.Bookify.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Uni.FMI.Bookify.Infrastructure.Data;
 namespace Uni.FMI.Bookify.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(IdentityCoreDbContext))]
-    partial class IdentityCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240804105941_AddCityTableAndRelationshipBetween")]
+    partial class AddCityTableAndRelationshipBetween
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,9 +327,6 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("NumberOfGuests")
-                        .HasColumnType("int");
 
                     b.Property<string>("OwnewId")
                         .IsRequired()

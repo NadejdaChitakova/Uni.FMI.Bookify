@@ -24,7 +24,16 @@ export class ListApartmentsComponent implements OnInit{
   apartment!: Apartment;
   apartments!: Apartment[];
   paging: Paging = {PageSize:10, PageIndex:0};
-  requestBody: SearchApartmentRequest = {paging: this.paging};
+  requestBody: SearchApartmentRequest = {
+    searchByLocationOrName: '',
+    numberOfGuests: 0,
+    cityId: '',
+    countryId: '',
+    endDate: null,
+    fromDate: null,
+    maxPrice: null,
+    minPrice: null,
+    paging: this.paging};
   error: any;
   constructor(private apartmentService: ApartmentService){}
 

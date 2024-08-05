@@ -1,6 +1,6 @@
 <div class="register-container">
   <h2>User Registration</h2>
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <div>
       <label for="firstname">First Name</label>
       <input id="firstname" name="firstname" [(ngModel)]="registerUser.firstname" required />
@@ -41,6 +41,11 @@
       </div>
     </div>
 
-    <button routerLink="/login" pButton type="submit" >Register</button>
+    <div>
+      <label>Register like owner</label>
+      <input id="registerLikeOwner" name="registerLikeOwner" [(ngModel)]="registerUser.registerLikeOwner" type="checkbox">
+    </div>
+
+    <button pButton type="submit" routerLink="/login">Register</button>
   </form>
 </div>

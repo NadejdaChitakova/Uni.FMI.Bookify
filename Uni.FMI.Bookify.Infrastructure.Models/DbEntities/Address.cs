@@ -1,10 +1,14 @@
-﻿namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
+﻿using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
+
+namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 {
     public sealed class Address
     {
         public Guid Id { get; set; }
 
-        public string City { get; set; }
+        public Guid CityId { get; set; }
+
+        public City City { get; set; }
 
         public string Street { get; set; }
 

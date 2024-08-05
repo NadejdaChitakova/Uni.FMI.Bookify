@@ -19,6 +19,8 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public Currency Currency { get; init; }
 
+        public int NumberOfGuests { get; set; }
+
         public Guid AddressId { get; init; }
 
         public Address Address { get; set; }

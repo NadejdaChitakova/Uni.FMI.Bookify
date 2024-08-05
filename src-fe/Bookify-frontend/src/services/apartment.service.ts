@@ -22,56 +22,56 @@ export class ApartmentService {
   constructor(private http: HttpClient) { }
 
   getApartments(id:string) :Observable<Apartment> {
-    const url = "http://localhost:58314/api/Apartments/GetApartmentById?id="+id;
+    const url = "https://localhost:44360/api/Apartments/GetApartmentById?id="+id;
 
      return this.http.get<Apartment>(url);
   }
 
   getAll(request: SearchApartmentRequest ) :Observable<Apartment[]> {
-    const url = "http://localhost:58314/api/Apartments/GetAll";
+    const url = "https://localhost:44360/api/Apartments/GetAll";
 
      return this.http.post<Apartment[]>(url, request);
   }
 
   uploadImage(formData: FormData) : Observable<string[]>{
-    const url = "http://localhost:58314/api/ApartmentImage/UploadPhoto";
+    const url = "https://localhost:44360/api/ApartmentImage/UploadPhoto";
 
     console.log("posting data")
     return this.http.post<string[]>(url, formData);
   }
 
   insert(request: InsertApartment) : Observable<any> {
-    const url = "http://localhost:58314/api/Apartments/Create";
+    const url = "https://localhost:44360/api/Apartments/Create";
 
      return this.http.post<any>(url, request);
   }
 
   update(request: UpdateApartmentRequest) : Observable<any> {
-    const url = "http://localhost:58314/api/Apartments/Update";
+    const url = "https://localhost:44360/api/Apartments/Update";
 
      return this.http.post<any>(url, request);
   }
 
   downloadApartmentImages(apartmentId: string) : Observable<any> {
-    const url = "http://localhost:58314/api/ApartmentImage/GetApartmentImage?imageId="+apartmentId;
+    const url = "https://localhost:44360/api/ApartmentImage/GetApartmentImage?imageId="+apartmentId;
 
      return this.http.get<any>(url);
   }
 
   deletePhoto(apartmentImageId: string) :Observable<any>{
-    const url = "http://localhost:58314/api/ApartmentImage/Delete?id="+apartmentImageId;
+    const url = "https://localhost:44360/api/ApartmentImage/Delete?id="+apartmentImageId;
 
     return this.http.delete<any>(url);
   }
 
   login(login: Login): Observable<any>{
-    const url = "http://localhost:58314/api/Users/Login";
+    const url = "https://localhost:44360/api/Users/Login";
 
     return this.http.post<any>(url,login);
   }
 
   registration(registration: RegisterUser): Observable<any>{
-    const url = "http://localhost:58314/api/Users/Registration";
+    const url = "https://localhost:44360/api/Users/Registration";
 
     return this.http.post<any>(url,registration);
   }

@@ -26,18 +26,17 @@ export class RegistrationComponent {
     lastname: '',
     phoneNumber: '',
     email: '',
-    password: ''
+    password: '',
+    registerLikeOwner : null
   };
   constructor(private apartmentService: ApartmentService){}
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-
+  onSubmit() {
       this.apartmentService.registration(this.registerUser)
       .subscribe(isSuccessfull =>
         this.isSuccessfull = isSuccessfull
       );
       console.log('Form Submitted!', this.registerUser);
-    }
+
   }
 }

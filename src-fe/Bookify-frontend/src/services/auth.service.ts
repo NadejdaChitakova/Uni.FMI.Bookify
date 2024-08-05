@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   login(login: Login){
-    const url = "http://localhost:58314/api/Users/Login";
+    const url = "https://localhost:44360/api/Users/Login";
 
     this.httpClient.post<any>(url,login).subscribe({
       next: (data) => {

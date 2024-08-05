@@ -52,7 +52,7 @@ namespace Uni_FMI.Bookify.Core.Business.Services
                 Address = new()
                 {
                     Id = addressId,
-                    City = "Plovdiv",
+                    City = new City(),
                     Street = "bul.Bulgaria 105",
                     CountryId = Guid.Parse("178892d1-4b13-48b0-aa92-2fd50e0a1cb3"),
                 },
@@ -101,7 +101,7 @@ namespace Uni_FMI.Bookify.Core.Business.Services
                 .ToListAsync(cancellationToken);
 
 entity.Description = request.Description;
-            entity.Address.City = request.City;
+            //entity.Address.City = request.City;
             entity.Address.Street = request.Street;
             entity.Price = request.Price;
             entity.CleaningFee = request.CleaningFee;

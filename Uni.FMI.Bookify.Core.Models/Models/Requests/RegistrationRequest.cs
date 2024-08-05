@@ -9,4 +9,6 @@ public record RegistrationRequest
     public string Email { get; set; }
 
     public string Password { get; set; }
+
+    public bool? RegisterLikeOwner { get; set; }
 }

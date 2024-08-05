@@ -3,5 +3,6 @@ export interface RegisterUser{
   lastname: string,
   phoneNumber: string,
   email: string,
-  password: string
+  password: string,
+  registerLikeOwner : any
 }

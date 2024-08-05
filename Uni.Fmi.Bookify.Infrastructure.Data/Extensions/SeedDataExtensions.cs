@@ -115,7 +115,7 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions
                     Address = new()
                     {
                         Id = addressId,
-                        City = "Plovdiv",
+                        City = new City(),
                         Street = "bul.Bulgaria 105",
                         CountryId = bulgaria.Id,
                     }
