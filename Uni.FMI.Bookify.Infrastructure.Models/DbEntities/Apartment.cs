@@ -1,4 +1,5 @@
-﻿using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
+﻿using Uni.FMI.Bookify.Infrastructure.Models.Common;
+using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
 using Uni.FMI.Bookify.Insrastructure.Models.Common;
 
 namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities

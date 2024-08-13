@@ -8,19 +8,30 @@ import { SearchApartmentRequest } from '../../types/searchApartmentRequest';
 import { Paging } from '../../types/Paging';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CalendarModule } from 'primeng/calendar';
 @Component({
   selector: 'app-list-apartments',
   standalone: true,
-  imports: [HttpClientModule,
+  imports: [
+      HttpClientModule,
       ApartmentComponent,
       ButtonModule,
-      RouterModule],
+      RouterModule,
+      FormsModule,
+      InputTextModule,
+      FloatLabelModule,
+      InputNumberModule,
+      CalendarModule],
   templateUrl: './list-apartments.component.html',
   styleUrl: './list-apartments.component.css',
 })
 
 export class ListApartmentsComponent implements OnInit{
+  rangeDates: Date[] | undefined;
   apartment!: Apartment;
   apartments!: Apartment[];
   paging: Paging = {PageSize:10, PageIndex:0};
@@ -29,8 +40,7 @@ export class ListApartmentsComponent implements OnInit{
     numberOfGuests: 0,
     cityId: '',
     countryId: '',
-    endDate: null,
-    fromDate: null,
+    duration: null,
     maxPrice: null,
     minPrice: null,
     paging: this.paging};

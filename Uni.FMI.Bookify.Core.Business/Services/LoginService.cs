@@ -1,7 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;

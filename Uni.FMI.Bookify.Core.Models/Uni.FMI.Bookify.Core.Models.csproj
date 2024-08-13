@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Uni.Fmi.Bookify.Infrastructure.Data\Uni.FMI.Bookify.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\Uni.FMI.Bookify.Infrastructure.Models\Uni.FMI.Bookify.Infrastructure.Models.csproj" />
   </ItemGroup>
 

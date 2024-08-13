@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
-using Uni.FMI.Bookify.Core.Models.NewFolder.Requests;
 using Uni.FMI.Bookify.Infrastructure.Data;
 using Uni.FMI.Bookify.Infrastructure.Models.DbEntities;
-using Uni.FMI.Bookify.Insrastructure.Models.Common;
 using Uni.FMI.Bookify.Insrastructure.Models.DbEntities;
 using Uni_FMI.Bookify.Core.Business.Contracts;
 using Uni_FMI.Bookify.Core.Business.Utils;
-using Address = Uni.FMI.Bookify.Insrastructure.Models.DbEntities.Address;
 
 namespace Uni_FMI.Bookify.Core.Business.Services
 {
@@ -30,7 +28,11 @@ namespace Uni_FMI.Bookify.Core.Business.Services
 
         public async Task<List<ApartmentResponse>> GetApartments(SearchApartmentsRequest request)
         {
-            var query = dbContext.Set<Apartment>().AsQueryable();
+            var filter = CreateApartmentFilter(request);
+
+            var query = dbContext.Set<Apartment>()
+                .Where(filter)
+                .AsQueryable();
 
             var result = mapper.ProjectTo<ApartmentResponse>(query)
                 .Skip(request.Paging.PageIndex * request.Paging.PageSize)
@@ -127,5 +129,42 @@ imagesToInsert.ForEach(x=> entity.ApartmentImages.Add(x));
             await dbContext.SaveChangesAsync();
         }
 
+
+        private ExpressionStarter<Apartment> CreateApartmentFilter(SearchApartmentsRequest request)
+        {
+            var predicate = PredicateBuilder.New<Apartment>();
+
+            if (request.SearchByLocationOrName != null)
+            {
+                predicate = predicate.And(x => x.Name == request.SearchByLocationOrName
+                                               || x.Address.Country.Name == request.SearchByLocationOrName
+                                               || x.Address.City.Name == request.SearchByLocationOrName);
+            }
+
+            if (request.NumberOfGuests.HasValue)
+            {
+                predicate = predicate.And(x => x.NumberOfGuests == request.NumberOfGuests);
+            }
+
+            if (request.Duration != null)
+            {
+                predicate = predicate.And(x => x.Bookings.Any(x => x.Duration == request.Duration
+                                                                   && x.Duration.Start >= request.Duration.Start
+                                                                   && x.Duration.End <= request.Duration.End));
+            }
+
+            if (request.MinPrice.HasValue)
+            {
+                predicate = predicate.And(x => x.Price >= request.MinPrice);
+            }
+
+            if (request.MaxPrice.HasValue)
+            {
+                predicate = predicate.And(x => x.Price <= request.MaxPrice);
+            }
+
+            return predicate;
+
+        }
     }
 }

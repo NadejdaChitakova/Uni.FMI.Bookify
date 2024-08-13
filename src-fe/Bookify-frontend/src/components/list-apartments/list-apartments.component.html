@@ -1,8 +1,48 @@
 <div>
-  <input name="searchField" value="Where you going?">
-  <label>Number of guests</label>
-  <input type="number" name="numberOfGuests">
 
+  <p-calendar
+  [(ngModel)]="rangeDates"
+  selectionMode="range"
+  [readonlyInput]="true"
+  />
+
+  <p-floatLabel>
+    <input pInputText id="searchByLocationOrName" [(ngModel)]="requestBody.searchByLocationOrName" />
+    <label for="searchByLocationOrName">Where are you going?</label>
+  </p-floatLabel>
+
+    <p-floatLabel>
+    <p-inputNumber
+    [(ngModel)]="requestBody.maxPrice"
+    mode="currency"
+    inputId="currency-germany"
+    [showButtons]="true"
+    currency="EUR"
+    locale="de-DE" />
+    <label for="number-input">Max price</label>
+   </p-floatLabel>
+
+    <p-floatLabel>
+    <p-inputNumber
+    [(ngModel)]="requestBody.minPrice"
+    mode="currency"
+    inputId="currency-germany"
+    [showButtons]="true"
+    currency="EUR"
+    locale="de-DE" />
+    <label for="number-input">Min price</label>
+    </p-floatLabel>
+
+    <p-floatLabel>
+    <p-inputNumber
+    [(ngModel)]="requestBody.maxPrice"
+    mode="currency"
+    inputId="currency-germany"
+    [showButtons]="true"
+    currency="EUR"
+    locale="de-DE" />
+    <label for="number-input">Max price</label>
+   </p-floatLabel>
 </div>
 
 <a [routerLink]="['apartments/add']" pButton label="Add apartment" icon="pi pi-pencil"></a>
