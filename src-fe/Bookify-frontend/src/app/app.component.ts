@@ -14,7 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
   standalone: true,
   imports: [
       RouterOutlet,
-     HeaderComponent,
+      HeaderComponent,
       FooterComponent,
       ListApartmentsComponent,
       HttpClientModule,

@@ -8,4 +8,6 @@ public interface IUserService
     Task<string> Login(LoginRequest request);
 
     Task<bool> Registration(RegistrationRequest request);
+
+    string? GetEmployeeByUsername(string username);
 }

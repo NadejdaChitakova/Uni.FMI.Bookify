@@ -9,15 +9,14 @@ import { UpdateApartmentRequest } from '../types/UpdateApartmentRequest';
 import { Login } from '../types/login';
 import { RegisterUser } from '../types/registerUser';
 import { InsertApartment } from '../types/insertApartment';
+import { GetUnavailableDate } from '../types/getUnavailableDate';
+import { ReserveRequest } from '../types/ReserveRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ApartmentService {
-  // headers= new HttpHeaders()
-  // .set('content-type', 'application/json')
-  // .set('Access-Control-Allow-Origin', '*');
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +30,12 @@ export class ApartmentService {
     const url = "https://localhost:44360/api/Apartments/GetAll";
 
      return this.http.post<Apartment[]>(url, request);
+  }
+
+  getUnavailablePeriods(request: GetUnavailableDate): Observable<string[]>{
+    const url = "https://localhost:44360/api/Apartments/GetUnavailableDate";
+
+    return this.http.post<string[]>(url, request);
   }
 
   uploadImage(formData: FormData) : Observable<string[]>{

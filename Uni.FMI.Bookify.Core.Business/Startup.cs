@@ -19,6 +19,7 @@ namespace Uni_FMI.Bookify.Core.Business
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IJwtProvider, JwtProvider>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBookingService, BookingService>();
 
             return services;
         }

@@ -52,6 +52,26 @@ export class HeaderComponent implements OnInit {
 
         })
     }
+
+    if(this.authService.isLoggedIn()){
+      this.items.push(
+        {
+          label: 'Моите обяви',
+          icon: 'pi pi-fw pi-plus',
+          routerLink: 'my-apartments'
+        }
+      )
+    }
+
+    if(this.authService.isLoggedIn()){
+      this.items.push(
+        {
+          label: 'Моите резервации',
+          icon: 'pi pi-fw pi-plus',
+          routerLink: 'my-reservations'
+        }
+      )
+    }
   }
 }
 

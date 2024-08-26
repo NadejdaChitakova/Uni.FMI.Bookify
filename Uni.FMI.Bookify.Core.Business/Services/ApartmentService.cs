@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Uni.FMI.Bookify.Core.Models.Models.Requests;
 using Uni.FMI.Bookify.Core.Models.Models.Response;
 using Uni.FMI.Bookify.Infrastructure.Data;
@@ -41,9 +42,31 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             return await result.ToListAsync();
         }
 
+        public async Task<List<DateOnly>> GetUnavailableDate(GetUnavailableDatesRequest request)
+        {
+            DateOnly calendarStart = new DateOnly(request.Year, request.Month, 1);
+            DateOnly firstDayOfNextMonth = calendarStart.AddMonths(1);
+            DateOnly lastDayOfMonth = firstDayOfNextMonth.AddDays(-1);
+
+            var bookings = dbContext.Set<Booking>()
+                .Where(x => x.ApartmentId == request.ApartmentId
+                            && x.Duration.Start.Month == request.Month
+                            && x.Duration.End.Year == request.Year)
+                .ToList();
+
+                var dates = GetUnavailableSlots(calendarStart, lastDayOfMonth, bookings);
+
+            return dates;
+        }
+
         public async Task Insert(CreateApartmentRequest request)
         {
             var addressId= Guid.NewGuid();
+
+            var city = dbContext
+                .Set<City>()
+                .FirstOrDefault(x => x.Name.ToLower() == request.Address.City.ToLower());
+
 
             var entity = new Apartment()
             {
@@ -54,13 +77,13 @@ namespace Uni_FMI.Bookify.Core.Business.Services
                 Address = new()
                 {
                     Id = addressId,
-                    City = new City(),
+                    City = city,
                     Street = "bul.Bulgaria 105",
-                    CountryId = Guid.Parse("178892d1-4b13-48b0-aa92-2fd50e0a1cb3"),
+                    CountryId = city.CountryId,
                 },
                 Price = request.Price,
                 CleaningFee = request.CleaningFee,
-                OwnewId = "d30466cd-eec5-473e-b8bd-772af9c888f7"
+                OwnewId = "03a2426b-0367-4589-a41f-d5e4fce02c3c"
             };
 
             await dbContext.SaveChangesAsync();
@@ -134,7 +157,7 @@ imagesToInsert.ForEach(x=> entity.ApartmentImages.Add(x));
         {
             var predicate = PredicateBuilder.New<Apartment>();
 
-            if (request.SearchByLocationOrName != null)
+            if (!request.SearchByLocationOrName.IsNullOrEmpty())
             {
                 predicate = predicate.And(x => x.Name == request.SearchByLocationOrName
                                                || x.Address.Country.Name == request.SearchByLocationOrName
@@ -166,5 +189,23 @@ imagesToInsert.ForEach(x=> entity.ApartmentImages.Add(x));
             return predicate;
 
         }
-    }
-}
+
+        public List<DateOnly> GetUnavailableSlots(DateOnly calendarStart, DateOnly calendarEnd, List<Booking> bookings)
+        {
+            var orderedBookings = bookings.OrderBy(x => x.Duration.Start);
+            List<DateOnly> unavailableDates = new();
+
+            foreach (var booking in orderedBookings)
+            {
+                for (DateOnly i = booking.Duration.Start; i <= booking.Duration.End; i = i.AddDays(1))
+                {
+unavailableDates.Add(i);
+                    }
+                }
+
+            return unavailableDates;
+        }
+        }
+        }
+    
+

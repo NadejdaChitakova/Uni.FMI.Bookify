@@ -9,6 +9,8 @@ public interface IApartmentService
 
     Task<List<ApartmentResponse>> GetApartments(SearchApartmentsRequest request);
 
+    Task<List<DateOnly>> GetUnavailableDate(GetUnavailableDatesRequest request);
+
     Task Insert(CreateApartmentRequest request);
 
     Task Update(UpdateApartmentRequest request, CancellationToken cancellationToken);

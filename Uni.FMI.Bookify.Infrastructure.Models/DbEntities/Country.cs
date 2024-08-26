@@ -8,8 +8,6 @@ namespace Uni.FMI.Bookify.Insrastructure.Models.DbEntities
 
         public string Name { get; init; }
 
-        //public List<Address> Address { get; set; }
-
         public List<City> Cities { get; set; }
     }
 }

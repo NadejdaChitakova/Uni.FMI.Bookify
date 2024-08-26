@@ -5,6 +5,7 @@
   <p>
       {{apartment.description}}
   </p>
+  <p-button class="reserve" [routerLink]="['/app-reserve', apartment.id]">Reserve</p-button>
   <ng-template pTemplate="footer">
       <div class="footer-container">
           <div class="buttons-container">

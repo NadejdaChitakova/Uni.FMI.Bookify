@@ -45,6 +45,7 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions
                 });
 
                 context.Set<Country>().AddRange(countries);
+                context.SaveChanges();
 
                 ApplicationRole adminRole = new()
                 {
@@ -115,7 +116,12 @@ namespace Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions
                     Address = new()
                     {
                         Id = addressId,
-                        City = new City(),
+                        City = new City()
+                        {
+                            Id = Guid.NewGuid(),
+                            CountryId = bulgaria.Id,
+                            Name = "Plovdiv"
+                        },
                         Street = "bul.Bulgaria 105",
                         CountryId = bulgaria.Id,
                     }

@@ -40,7 +40,7 @@ export class AddApartmentComponent {
   insertEntity: InsertApartment = {} as InsertApartment;
   ids: string[] = [];
 
- constructor(private apartmentService: ApartmentService) {}
+ constructor(private apartmentService: ApartmentService, private router: Router) {}
 
  onSubmit(evet : Event){
   this.insertEntity.Name = this.apartment.name;
@@ -51,6 +51,8 @@ export class AddApartmentComponent {
   this.insertEntity.Address = { city: this.apartment.address.city, street: this.apartment.address.street, country: ''};
   console.log(this.insertEntity, "inserted entity")
   this.apartmentService.insert(this.insertEntity).subscribe();
+
+  this.router.navigate(['']);
  }
 
  onImageUpload(event: FileSelectEvent) {

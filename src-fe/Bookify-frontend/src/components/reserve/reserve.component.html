@@ -1,0 +1,22 @@
+<p-panel header="Резервация">
+  <p-panel [showHeader]="false">
+    <h3>Вашето пътуване</h3>
+    <p>Налични дати</p>
+    <p-calendar
+      (onMonthChange)="onMonthChange($event)"
+      [disabledDates]="dates"
+      selectionMode="range"
+      [(ngModel)]="rangeDates"
+       >
+    </p-calendar>
+  </p-panel>
+
+  <p-panel [showHeader]="false">
+    <h3>Подробности за цената</h3>
+    <p> {{pricePerNight}} * {{rangeDates.length}} = {{pricePerNight * rangeDates.length}}</p>
+    <p> Цена за вечер * брои нощувки = Цена за нощувки</p>
+    <p> Такса за почистване: {{cleaningFee}}</p>
+    <p> Крайна цена : {{(pricePerNight * rangeDates.length) + cleaningFee}}</p>
+    <p-button (onClick)="reserve()">Резервирай!</p-button>
+  </p-panel>
+</p-panel>

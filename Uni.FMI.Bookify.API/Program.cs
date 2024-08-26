@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Uni.FMI.Bookify.Core.Models.Authentication;
 using Uni.FMI.Bookify.Infrastructure.Data;
-using Uni.FMI.Bookify.Infrastructure.Data.SeedDataExtensions;
 using Uni_FMI.Bookify.Core.Business;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -89,5 +89,13 @@ namespace Uni_FMI.Bookify.Core.Business.Services
 
             return isSucceed != -1;
         }
+
+        public string? GetEmployeeByUsername(string username)
+        {
+            return dbContext.Set<ApplicationUser>()
+                .Where(x => x.UserName == username)
+                .Select(x=> x.Id)
+                .FirstOrDefault();
+        }
     }
 }

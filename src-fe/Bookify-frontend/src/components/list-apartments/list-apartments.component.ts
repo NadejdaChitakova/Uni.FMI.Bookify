@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
+import { PanelModule } from 'primeng/panel';
+import { InputGroupModule } from 'primeng/inputgroup';
+
 @Component({
   selector: 'app-list-apartments',
   standalone: true,
@@ -25,7 +28,10 @@ import { CalendarModule } from 'primeng/calendar';
       InputTextModule,
       FloatLabelModule,
       InputNumberModule,
-      CalendarModule],
+      CalendarModule,
+      RouterModule,
+      PanelModule,
+      InputGroupModule],
   templateUrl: './list-apartments.component.html',
   styleUrl: './list-apartments.component.css',
 })
@@ -45,7 +51,9 @@ export class ListApartmentsComponent implements OnInit{
     minPrice: null,
     paging: this.paging};
   error: any;
-  constructor(private apartmentService: ApartmentService){}
+  constructor(private apartmentService: ApartmentService,
+              private router: Router
+  ){}
 
   ngOnInit() {
 
@@ -59,7 +67,19 @@ export class ListApartmentsComponent implements OnInit{
         console.log(error, "test");
       }
     });
+  }
 
-
+  load(){
+    this.apartmentService.getAll(this.requestBody)
+    .subscribe({
+      next: (data) => {
+        this.apartments = data;
+        console.log(this.apartments);
+      },
+      error: (error) => {
+        console.log(error, "test");
+      }
+    });
+    this.router.navigate(['/']);
   }
 }

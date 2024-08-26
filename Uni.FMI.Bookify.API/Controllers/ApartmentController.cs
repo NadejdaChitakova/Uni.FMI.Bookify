@@ -12,15 +12,23 @@ namespace Uni.FMI.Bookify.API.Controllers
     public class ApartmentController(IApartmentService apartmentService) : ControllerBase
     {
         [HttpGet("GetApartmentById")]
-        public async Task<ActionResult> GetApartment(Guid id)
+        public async Task<IActionResult> GetApartment(Guid id)
         {
             var result = apartmentService.GetApartment(id);
 
             return Ok(result);
         }
 
+        [HttpPost(nameof(GetUnavailableDate))]
+        public async Task<IActionResult> GetUnavailableDate(GetUnavailableDatesRequest request)
+        {
+            var result = await apartmentService.GetUnavailableDate(request);
+
+            return Ok(result);
+        }
+
         [HttpPost("GetAll")]
-        public async Task<ActionResult> GetAll(SearchApartmentsRequest request)
+        public async Task<IActionResult> GetAll(SearchApartmentsRequest request)
         {
             var result = await apartmentService.GetApartments(request);
 
@@ -28,7 +36,7 @@ namespace Uni.FMI.Bookify.API.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<ActionResult> Insert(CreateApartmentRequest request)
+        public async Task<IActionResult> Insert(CreateApartmentRequest request)
         {
  await apartmentService.Insert(request);
 
@@ -36,7 +44,7 @@ namespace Uni.FMI.Bookify.API.Controllers
         }
 
         [HttpPost("Update")]
-        public async Task<ActionResult> Update(UpdateApartmentRequest request, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Update(UpdateApartmentRequest request, CancellationToken cancellationToken = default)
         {
              await apartmentService.Update(request, cancellationToken);
 

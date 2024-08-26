@@ -6,6 +6,7 @@ a {
 
 .footer-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
@@ -24,11 +25,17 @@ a {
 }
 
 .apartments-container {
-  /* display: flex;
-  flex-direction: row; */
-  /* gap: 20px; Adjust the gap as needed */
-  /* flex-wrap: wrap; */
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
   width: 360px;
   margin: 5px;
   padding: 5px;
+}
+
+.reserve{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 20px;
 }

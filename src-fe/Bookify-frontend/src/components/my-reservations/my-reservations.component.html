@@ -1,0 +1,24 @@
+<p-panel header="Мойте резервации">
+  <p-table
+    [value]="reservations">
+    <ng-template pTemplate="header">
+      <tr>
+          <th>Име на имот</th>
+          <th>От дата</th>
+          <th>До дата</th>
+          <th>Цена</th>
+          <th>Дейстия</th>
+      </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-reservation>
+    <tr>
+        <td>{{reservation.apartmentName}}</td>
+        <td>{{reservation.fromDate}}</td>
+        <td>{{reservation.toDate}}</td>
+        <td>{{reservation.totalPrice}}</td>
+        <td><p-button *ngIf="reservation.canDeclineReservation" label="Отмени" severity="danger"></p-button></td>
+    </tr>
+</ng-template>
+  </p-table>
+</p-panel>
