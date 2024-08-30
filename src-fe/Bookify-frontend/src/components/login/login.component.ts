@@ -24,11 +24,13 @@ export class LoginComponent {
 
   authService = inject(AuthService)
 
-  constructor(private apartmentService: ApartmentService){}
+  constructor(private apartmentService: ApartmentService,
+    private router: Router
+  ){}
 
   onSubmit(){
     var login: Login = {email: this.username, password: this.password};
-    console.log(this.username)
     this.authService.login(login)
+    this.router.navigate(['/'])
   }
 }

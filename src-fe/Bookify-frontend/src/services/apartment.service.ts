@@ -11,6 +11,9 @@ import { RegisterUser } from '../types/registerUser';
 import { InsertApartment } from '../types/insertApartment';
 import { GetUnavailableDate } from '../types/getUnavailableDate';
 import { ReserveRequest } from '../types/ReserveRequest';
+import { GetMyApartments } from '../types/getMyApartments';
+import { url } from 'inspector';
+import { GetMyApartmentReservations } from '../types/getMyApartmentReservations';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +82,17 @@ export class ApartmentService {
     const url = "https://localhost:44360/api/Users/Registration";
 
     return this.http.post<any>(url,registration);
+  }
+
+  getMyApartments() : Observable<GetMyApartments[]>{
+    const url = "https://localhost:44360/api/Apartments/GetMyApartments";
+
+    return this.http.get<GetMyApartments[]>(url);
+  }
+
+  getmyApartmentReservations(apartmentId: string): Observable<GetMyApartmentReservations>{
+    const url = "https://localhost:44360/api/Apartments/GetMyApartmentReservations?apartmentId="+ apartmentId;
+
+    return this.http.get<GetMyApartmentReservations>(url);
   }
 }

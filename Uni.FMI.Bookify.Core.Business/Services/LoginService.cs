@@ -16,12 +16,14 @@ namespace Uni_FMI.Bookify.Core.Business.Services
         public async Task<string> Login(LoginRequest request)
         {
             var user = await dbContext.Set<ApplicationUser>()
+                           .Include(x=> x.UserRoles)
+                           .ThenInclude(x=> x.Role)
                 .Where(x => x.Email == request.Email)
                 .FirstOrDefaultAsync();
 
             if (user is null)
             {
-                return String.Empty;
+                return string.Empty;
             }
 
             
@@ -46,7 +48,7 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             if (request.RegisterLikeOwner.HasValue)
             {
                 role = await dbContext.Set<ApplicationRole>()
-                           .Where(x => x.Name == "Owner")
+                           .Where(x => x.Name == "Admin")
                            .FirstOrDefaultAsync();
             }
             else

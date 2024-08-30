@@ -2,12 +2,17 @@ import { AuthService } from './../../services/auth.service';
 import { MenubarModule } from 'primeng/menubar';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'header',
   standalone: true,
   imports: [
-    MenubarModule],
+    MenubarModule,
+    ButtonModule,
+    CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -18,13 +23,10 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+
     this.items = [
       {
-        label: 'Home',
-        icon: 'pi pi-fw pi-plus',
-      },
-      {
-        label: 'Apartments',
+        label: 'Имоти',
         icon: 'pi pi-fw pi-plus',
         routerLink: "/"
       }
@@ -32,28 +34,19 @@ export class HeaderComponent implements OnInit {
     if(!this.authService.isLoggedIn()){
       this.items.push(
         {
-          label: 'Login',
+          label: 'Влизане в профила',
           icon: 'pi pi-fw pi-plus',
           routerLink: "login"
         })
         this.items.push({
-          label: 'Registration',
+          label: 'Регистрация',
           icon: 'pi pi-fw pi-plus',
           routerLink: "registration"
         })
     }
 
-    if(this.authService.isLoggedIn()){
-      this.items.push(
-        {
-          label: 'Logout',
-          icon: 'pi pi-fw pi-plus',
-          command: () => this.authService.logout()
-
-        })
-    }
-
-    if(this.authService.isLoggedIn()){
+    if(this.authService.isLoggedIn()
+      &&this.authService.decodeToken() == "Admin"){
       this.items.push(
         {
           label: 'Моите обяви',
@@ -72,6 +65,22 @@ export class HeaderComponent implements OnInit {
         }
       )
     }
+
+    if(this.authService.isLoggedIn()){
+      this.items.push(
+        {
+          label: 'Изход',
+          icon: 'pi pi-fw pi-plus',
+          command: () => this.authService.logout()
+
+        })
+    }
+  }
+
+  isLoggedIn(){
+    var token = this.authService.decodeToken();
+    return this.authService.isLoggedIn() && token != null && token.role == "Admin";
+
   }
 }
 

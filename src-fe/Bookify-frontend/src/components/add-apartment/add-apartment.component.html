@@ -1,48 +1,50 @@
 
-<h2 style="text-align: center;">Add apartment</h2>
+<p-panel header="Добави имот">
 <form (ngSubmit)="onSubmit($event)">
   <div class="p-field">
-    <label for="name">Name</label>
+    <label for="name">Име</label>
     <input type="text" id="name" [(ngModel)]="apartment.name" name="name" required>
   </div>
 
   <div class="p-field">
-    <label for="description">Description</label>
+    <label for="description">Описание</label>
     <textarea id="description" [(ngModel)]="apartment.description" name="description" required></textarea>
   </div>
 
   <div class="p-field">
-    <label for="address">Address</label>
-    <input type="text"  [(ngModel)]="apartment.address.street" name="street" placeholder="Street">
-    <input type="text"  [(ngModel)]="apartment.address.city" name="city" placeholder="City">
+    <label for="address">Адрес</label>
+    <input type="text"  [(ngModel)]="apartment.address.street" name="street" placeholder="Улица">
+    <input type="text"  [(ngModel)]="apartment.address.city" name="city" placeholder="Град">
+  </div>
+
+    <div class="card flex justify-content-center">
+      <p-toast />
+      <p-fileUpload
+          name="demo[]"
+          url="https://www.primefaces.org/cdn/api/upload.php"
+          (onUpload)="onImageUpload($event)"
+          [multiple]="true"
+          accept="image/*"
+          maxFileSize="1000000">
+              <ng-template pTemplate="content">
+                  <ul *ngIf="uploadedFiles.length">
+                      <li *ngFor="let file of uploadedFiles">
+                          {{ file.name }} - {{ file.size }} bytes
+                      </li>
+                  </ul>
+              </ng-template>
+      </p-fileUpload>
   </div>
 
   <div class="p-field">
-    <label for="apartmentImage">Apartment Image</label>
-      <div class="card flex justify-content-center">
-        <p-fileUpload
-        mode="basic"
-        name="demo[]"
-        chooseIcon="pi pi-upload"
-        (onSelect)="onImageUpload($event)"
-        [auto]="true"
-        chooseLabel="Browse" />
-      </div>
-    </div>
-    <div style="background-color: #f8f9fa; padding: 20px; border-top: 1px solid #e7e7e7; border-radius: 10px;">
-      @for (item of apartment.apartmentImages; track $index) {
-        <app-apartment-image [apartmentImageId]="item.id"></app-apartment-image>
-      }
-    </div>
-
-  <div class="p-field">
-    <label for="price">Price</label>
+    <label for="price">Цена</label>
     <input type="number" id="price" [(ngModel)]="apartment.price" name="price" required>
   </div>
   <div class="p-field">
-    <label for="price">Cleaning fee</label>
+    <label for="price">Такса за почистване</label>
     <input type="number" id="price" [(ngModel)]="apartment.cleaningFee" name="price" required>
   </div>
 
-  <button type="submit" pButton label="Create Apartment"> </button>
+  <button type="submit" pButton label="Добави"> </button>
 </form>
+</p-panel>

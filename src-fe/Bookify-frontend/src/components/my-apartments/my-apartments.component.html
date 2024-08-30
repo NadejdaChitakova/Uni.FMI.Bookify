@@ -1,1 +1,32 @@
-<p>my-apartments works!</p>
+<p-panel header="Мойте обяви">
+  <p-table [value]="myApartments" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Име</th>
+            <th>Държава</th>
+            <th>Адрес</th>
+            <th>Действия</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-apartment>
+        <tr>
+            <td>{{ apartment.name }}</td>
+            <td>{{ apartment.city }}</td>
+            <td>{{ apartment.address }}</td>
+            <td>
+              <div style="display: flex; direction: flex-row;">
+                <div style='margin: 1%;'>
+                  <p-button severity="info" label="Виж" (onClick)="viewApartment(apartment.id)"></p-button>
+                </div>
+                <div style='margin: 1%;'>
+                <p-button label="Редакция" (onClick)="editApartment(apartment.id)"></p-button>
+                </div>
+                <div style='margin: 1%;'>
+                <p-button severity="success" label="Резервации" (onClick)="viewReservations(apartment.id)"></p-button>
+                </div>
+              </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-panel>

@@ -3,11 +3,17 @@ import { ButtonModule } from 'primeng/button';
 import { Component, Input, OnInit } from '@angular/core';
 import { Apartment } from '../../types/apartment';
 import { Router, RouteReuseStrategy, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'apartment',
   standalone: true,
-  imports: [CardModule, ButtonModule, RouterModule],
+  imports: [
+    CardModule,
+    ButtonModule,
+    RouterModule,
+    CommonModule],
   templateUrl: './apartment.component.html',
   styleUrl: './apartment.component.css'
 })
@@ -15,7 +21,9 @@ import { Router, RouteReuseStrategy, RouterModule } from '@angular/router';
 export class ApartmentComponent implements OnInit {
   @Input() apartment!: Apartment;
 
-  constructor(private router: Router){}
+  constructor(private router: Router,
+              private authService: AuthService
+  ){}
 
   ngOnInit(): void {
     console.log(this.apartment);
@@ -26,5 +34,9 @@ export class ApartmentComponent implements OnInit {
     const imageUrl : string = "";
 
     return imageUrl;
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
   }
 }

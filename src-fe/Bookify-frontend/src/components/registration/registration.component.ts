@@ -29,14 +29,16 @@ export class RegistrationComponent {
     password: '',
     registerLikeOwner : null
   };
-  constructor(private apartmentService: ApartmentService){}
+  constructor(private apartmentService: ApartmentService,
+              private router: Router
+  ){}
 
   onSubmit() {
       this.apartmentService.registration(this.registerUser)
       .subscribe(isSuccessfull =>
         this.isSuccessfull = isSuccessfull
       );
-      console.log('Form Submitted!', this.registerUser);
 
+      this.router.navigate(['/login'])
   }
 }

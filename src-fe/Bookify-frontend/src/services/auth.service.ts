@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Login } from '../types/login';
 import { Router } from '@angular/router';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ export class AuthService {
 
   httpClient = inject(HttpClient);
   router = inject(Router)
+  jwtHelper = new JwtHelperService();
+
   constructor() { }
 
   setToken(token: string | null) {
@@ -31,7 +34,6 @@ export class AuthService {
   }
 
   isLoggedIn(){
-    console.log("is logged in: " + this.getToken() !== null)
     return this.getToken() !== null;
   }
 
@@ -42,6 +44,7 @@ export class AuthService {
       next: (data) => {
         this.setToken(data);
         this.router.navigate(["/"])
+        window.location.reload();
       },
       error: (err) => {
         this.setToken(null)
@@ -51,6 +54,12 @@ export class AuthService {
 
   logout(){
     this.setToken(null);
+    window.location.reload();
     this.router.navigate(["/login"])
+  }
+
+  decodeToken(){
+    const token = this.getToken() ?? '';
+    return this.jwtHelper.decodeToken(token);
   }
 }

@@ -1,1 +1,8 @@
-<p-menubar [model]="items" />
+<p-menubar [model]="items" >
+
+  <ng-template pTemplate="end">
+    <div class="flex align-items-center gap-2">
+      <a *ngIf="isLoggedIn()" [routerLink]="['apartments/add']" pButton label="Добави обява" icon="pi pi-pencil" style="text-decoration: none;"></a>
+    </div>
+</ng-template>
+</p-menubar>

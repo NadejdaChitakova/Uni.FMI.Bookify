@@ -8,8 +8,8 @@ namespace Uni.FMI.Bookify.API.Controllers
     [ApiController]
     [Route("api/Apartments")]
     [EnableCors]
-    //[Authorize]
-    public class ApartmentController(IApartmentService apartmentService) : ControllerBase
+    public class ApartmentController(IApartmentService apartmentService,
+        IUserService userService) : BaseController(userService)
     {
         [HttpGet("GetApartmentById")]
         public async Task<IActionResult> GetApartment(Guid id)
@@ -35,10 +35,24 @@ namespace Uni.FMI.Bookify.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet(nameof(GetMyApartments))]
+        public async Task<IActionResult> GetMyApartments(CancellationToken cancellationToken)
+        {
+            var myApartments = await apartmentService.GetMyApartments(UserId, cancellationToken);
+            return Ok(myApartments);
+        }
+
+        [HttpGet(nameof(GetMyApartmentReservations))]
+        public async Task<IActionResult> GetMyApartmentReservations([FromQuery] Guid apartmentId, CancellationToken cancellationToken)
+        {
+            var result = await apartmentService.GetMyApartmentReservations(apartmentId, cancellationToken);
+            return Ok(result);
+        }
+
         [HttpPost("Create")]
         public async Task<IActionResult> Insert(CreateApartmentRequest request)
         {
- await apartmentService.Insert(request);
+            await apartmentService.Insert(request, UserId);
 
             return Ok();
         }

@@ -2,7 +2,7 @@
   <img
   src="https://localhost:44360/api/ApartmentImage/GetApartmentImage?imageId={{apartmentImageId}}"
   style="width: 90px; height: 90px;" />
-  <button class="delete-button" (click)="DeletePhoto(apartmentImageId)">Delete</button>
+  <button *ngIf="isEdit" class="delete-button" (click)="DeletePhoto(apartmentImageId)">Delete</button>
 </div>
 
 

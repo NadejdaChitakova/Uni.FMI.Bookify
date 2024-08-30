@@ -7,5 +7,5 @@ public interface IBookingService
 {
     Task Reserve(MakeReservationRequest request, string userId);
     Task<List<MyReservationResponse>> GetMyReservation(string userId);
-    Task DeclineReservation(int reservationId, CancellationToken cancellationToken)
+    Task DeclineReservation(Guid reservationId, CancellationToken cancellationToken);
 }

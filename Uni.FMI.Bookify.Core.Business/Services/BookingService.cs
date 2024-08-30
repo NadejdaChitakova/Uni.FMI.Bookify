@@ -56,7 +56,7 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             return reservations;
         }
 
-        public async Task DeclineReservation(int reservationId, CancellationToken cancellationToken)
+        public async Task DeclineReservation(Guid reservationId, CancellationToken cancellationToken)
         {
             var reservation = await dbContext.Set<Booking>()
                 .FindAsync(reservationId, cancellationToken);

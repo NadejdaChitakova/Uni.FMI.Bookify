@@ -1,0 +1,28 @@
+<p-panel header="Резервации за {{reservations.apartmentName}}">
+  <p-table [value]="reservations.reservations" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Начална дата</th>
+            <th>Крайна дата</th>
+            <th>Такса за почистване</th>
+            <th>Цена за нощувки</th>
+            <th>Доход</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-reservation>
+        <tr>
+            <td>{{ reservation.startDate }}</td>
+            <td>{{ reservation.endDate }}</td>
+            <td>{{ reservation.cleaningPrice }}</td>
+            <td>{{ reservation.priceForNights }}</td>
+            <td>{{ reservation.profit }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <tr>
+          <td colspan="4"></td>
+          <td>Общо: {{reservations.entireProfit}} лв.</td>
+      </tr>
+  </ng-template>
+</p-table>
+</p-panel>

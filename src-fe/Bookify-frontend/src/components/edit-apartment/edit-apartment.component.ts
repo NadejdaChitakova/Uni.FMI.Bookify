@@ -13,7 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
 import { ApartmentImageComponent } from '../apartment-image/apartment-image.component';
 import { Router, RouterLink } from '@angular/router';
-
+import { PanelModule } from 'primeng/panel';
 
 @Component({
     selector: 'app-edit-apartment',
@@ -30,7 +30,8 @@ import { Router, RouterLink } from '@angular/router';
         ToastModule,
         CommonModule,
         ApartmentImageComponent,
-        RouterLink]
+        RouterLink,
+        PanelModule]
 })
 
 export class EditApartmentComponent implements OnInit
@@ -42,7 +43,8 @@ export class EditApartmentComponent implements OnInit
   ids: string[] = [];
 
   constructor(private route: ActivatedRoute,
-    private apartmentService: ApartmentService){
+    private apartmentService: ApartmentService,
+    private router : Router){
   }
 
   ngOnInit() {
@@ -88,6 +90,9 @@ export class EditApartmentComponent implements OnInit
         next: (data) => {
           this.ids = [... this.ids, ...data];
           console.log(this.ids);
+          this.onSubmit();
+
+          console.log(this.router.navigate(['apartments/edit/', this.apartment.id]))
         },
         error: (error) => {
           console.log(error, "test");

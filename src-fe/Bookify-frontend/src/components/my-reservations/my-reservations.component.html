@@ -17,7 +17,7 @@
         <td>{{reservation.fromDate}}</td>
         <td>{{reservation.toDate}}</td>
         <td>{{reservation.totalPrice}}</td>
-        <td><p-button *ngIf="reservation.canDeclineReservation" label="Отмени" severity="danger"></p-button></td>
+        <td><p-button *ngIf="reservation.canDeclineReservation" label="Отмени" severity="danger" (onClick)="declineReservation(reservation.id)"></p-button></td>
     </tr>
 </ng-template>
   </p-table>

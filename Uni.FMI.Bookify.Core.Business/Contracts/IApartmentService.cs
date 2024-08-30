@@ -9,9 +9,13 @@ public interface IApartmentService
 
     Task<List<ApartmentResponse>> GetApartments(SearchApartmentsRequest request);
 
+    Task<List<GetMyApartments>> GetMyApartments(string userId, CancellationToken cancellationToken);
+
+    Task<GetMyApartmentsReservations?> GetMyApartmentReservations(Guid apartmentId, CancellationToken cancellationToken);
+
     Task<List<DateOnly>> GetUnavailableDate(GetUnavailableDatesRequest request);
 
-    Task Insert(CreateApartmentRequest request);
+    Task Insert(CreateApartmentRequest request, string userId);
 
     Task Update(UpdateApartmentRequest request, CancellationToken cancellationToken);
 

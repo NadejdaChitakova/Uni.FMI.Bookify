@@ -1,5 +1,5 @@
 import { DateRange } from './../../types/dateRange';
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { PanelModule } from 'primeng/panel';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, CalendarMonthChangeEvent } from 'primeng/calendar';
@@ -10,6 +10,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Button, ButtonModule } from 'primeng/button';
 import { ReserveRequest } from '../../types/ReserveRequest';
 import { BookingService } from '../../services/booking.service';
+import moment from 'moment';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-reserve',
@@ -24,7 +26,7 @@ import { BookingService } from '../../services/booking.service';
     DatePipe,
   ],
   templateUrl: './reserve.component.html',
-  styleUrl: './reserve.component.css'
+  styleUrl: './reserve.component.css',
 })
 export class ReserveComponent {
   apartmentId : string  = "";
@@ -34,11 +36,14 @@ export class ReserveComponent {
   request: GetUnavailableDate = {apartmentId: this.apartmentId, month: 0, year: 0}
   pricePerNight: number = 0;
   cleaningFee: number = 0;
+  daysDifference: number = 0;
+  totalCost: number = 0;
 
   constructor(private apartmentService: ApartmentService,
               private bookingService: BookingService,
               private router: ActivatedRoute,
-              private route: Router){}
+              private route: Router,
+              private authService: AuthService){}
 
     ngOnInit(){
       let todat = new Date;
@@ -66,21 +71,28 @@ export class ReserveComponent {
           }
         });
     }
+    onDateChange(event: any): void {
+      console.log(this.rangeDates)
+      const startDate = moment(this.rangeDates[1]);
+      const endDate = moment(this.rangeDates[0]);
+      this.daysDifference = startDate.diff(endDate, 'days') ;
+      this.authService.decodeToken();
+    }
 
-  onMonthChange(event : CalendarMonthChangeEvent){
-    this.request.month = event.month ?? 0;
-    this.request.year = event.year ?? 0;
+    onMonthChange(event : CalendarMonthChangeEvent){
+      this.request.month = event.month ?? 0;
+      this.request.year = event.year ?? 0;
 
-    this.apartmentService.getUnavailablePeriods(this.request).subscribe
-    ({
-      next: (data) => {
-        this.dates = this.convertToDate(data);
-        console.log(this.dates)
-      },
-      error: (error) => {
-        console.log(error, "test");
-      }
-    });
+      this.apartmentService.getUnavailablePeriods(this.request).subscribe
+      ({
+        next: (data) => {
+          this.dates = this.convertToDate(data);
+          console.log(this.dates)
+        },
+        error: (error) => {
+          console.log(error, "test");
+        }
+      });
   }
 
   reserve(){

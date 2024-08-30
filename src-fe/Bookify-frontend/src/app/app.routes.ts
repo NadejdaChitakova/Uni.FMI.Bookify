@@ -10,6 +10,7 @@ import { authGuard } from '../guards/auth.guard';
 import { ReserveComponent } from '../components/reserve/reserve.component';
 import { MyApartmentsComponent } from '../components/my-apartments/my-apartments.component';
 import { MyReservationsComponent } from '../components/my-reservations/my-reservations.component';
+import { ApartmentReservationsComponent } from '../components/apartment-reservations/apartment-reservations.component';
 
 export const routes: Routes = [
    { path: '', component: ListApartmentsComponent},
@@ -20,7 +21,8 @@ export const routes: Routes = [
    { path: 'registration', component: RegistrationComponent},
    { path: 'app-reserve/:id', component: ReserveComponent},
    { path: 'my-apartments', component: MyApartmentsComponent},
-   { path: 'my-reservations', component: MyReservationsComponent}
+   { path: 'my-reservations', component: MyReservationsComponent},
+   { path: 'apartmentReservations/:id', component: ApartmentReservationsComponent}
 ];
 
 export class AppRoutingModule { }

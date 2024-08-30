@@ -1,14 +1,14 @@
-<h2>Login</h2>
+<h2>Влизане в профиле</h2>
 <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
   <div>
-    <label for="username">Username</label>
+    <label for="username">Потребителско име</label>
     <input id="username" name="username" [(ngModel)]="username" required minlength="3" />
   </div>
 
   <div>
-    <label for="password">Password</label>
+    <label for="password">Парола</label>
     <input id="password" name="password" type="password" [(ngModel)]="password" required minlength="6" />
   </div>
 
-  <button type="submit"  pButton [disabled]="loginForm.invalid">Login</button>
+  <button type="submit"  pButton [disabled]="loginForm.invalid">Влез</button>
 </form>

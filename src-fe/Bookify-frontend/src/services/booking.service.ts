@@ -22,4 +22,10 @@ export class BookingService {
 
     return this.http.post<any>(url, request);
   }
+
+  declineReservation(reservationId: string): Observable<any>{
+    const url = "https://localhost:44360/api/Booking/DeclineReservation?id="+reservationId;
+
+    return this.http.delete(url);
+  }
 }

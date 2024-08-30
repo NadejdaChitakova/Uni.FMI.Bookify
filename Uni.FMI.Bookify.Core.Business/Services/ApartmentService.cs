@@ -35,11 +35,52 @@ namespace Uni_FMI.Bookify.Core.Business.Services
                 .Where(filter)
                 .AsQueryable();
 
-            var result = mapper.ProjectTo<ApartmentResponse>(query)
+                var result = mapper.ProjectTo<ApartmentResponse>(query)
                 .Skip(request.Paging.PageIndex * request.Paging.PageSize)
                              .Take(request.Paging.PageSize);
 
             return await result.ToListAsync();
+        }
+
+        public async Task<List<GetMyApartments>> GetMyApartments(string userId, CancellationToken cancellationToken)
+        {
+            var myApartments = await dbContext.Set<Apartment>()
+                .Where(x => x.OwnewId == userId)
+                .Select(x => new GetMyApartments
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    City = x.Address.City.Name,
+                    Address = x.Address.Street,
+                })
+                .ToListAsync(cancellationToken);
+
+            return myApartments;
+        }
+
+        public async Task<GetMyApartmentsReservations?> GetMyApartmentReservations(Guid apartmentId, CancellationToken cancellationToken)
+        {
+            var reservation = await dbContext.Set<Apartment>()
+                .Where(x => x.Id == apartmentId)
+                .Select(x => new GetMyApartmentsReservations
+                {
+                    ApartmentId = x.Id,
+                    ApartmentName = x.Name,
+                    Reservations = x.Bookings.Select(y => new ApartmentReservation()
+                    {
+                        ReservationId = y.Id,
+                        StartDate = y.Duration.Start,
+                        EndDate = y.Duration.End,
+                        CleaningPrice = y.CleaningFee,
+                        PriceForNights = y.TotalPrice,
+                        Profit = y.PriceForPeriod
+                    }).ToList()
+                }).FirstOrDefaultAsync(cancellationToken);
+            
+            var entireProfit = reservation?.Reservations.Sum(x => x.Profit);
+            reservation.EntireProfit = entireProfit;
+
+            return reservation;
         }
 
         public async Task<List<DateOnly>> GetUnavailableDate(GetUnavailableDatesRequest request)
@@ -59,14 +100,13 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             return dates;
         }
 
-        public async Task Insert(CreateApartmentRequest request)
+        public async Task Insert(CreateApartmentRequest request, string userId)
         {
             var addressId= Guid.NewGuid();
 
             var city = dbContext
                 .Set<City>()
                 .FirstOrDefault(x => x.Name.ToLower() == request.Address.City.ToLower());
-
 
             var entity = new Apartment()
             {
@@ -77,13 +117,13 @@ namespace Uni_FMI.Bookify.Core.Business.Services
                 Address = new()
                 {
                     Id = addressId,
-                    City = city,
-                    Street = "bul.Bulgaria 105",
+                    CityId = city.Id,
+                    Street = request.Address.Street,
                     CountryId = city.CountryId,
                 },
                 Price = request.Price,
                 CleaningFee = request.CleaningFee,
-                OwnewId = "03a2426b-0367-4589-a41f-d5e4fce02c3c"
+                OwnewId = userId
             };
 
             await dbContext.SaveChangesAsync();

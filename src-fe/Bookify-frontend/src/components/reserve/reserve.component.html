@@ -7,13 +7,14 @@
       [disabledDates]="dates"
       selectionMode="range"
       [(ngModel)]="rangeDates"
+      (onClose)="onDateChange($event)"
        >
     </p-calendar>
   </p-panel>
 
   <p-panel [showHeader]="false">
     <h3>Подробности за цената</h3>
-    <p> {{pricePerNight}} * {{rangeDates.length}} = {{pricePerNight * rangeDates.length}}</p>
+    <p> {{pricePerNight}} * {{ daysDifference }} = {{pricePerNight * daysDifference}}</p>
     <p> Цена за вечер * брои нощувки = Цена за нощувки</p>
     <p> Такса за почистване: {{cleaningFee}}</p>
     <p> Крайна цена : {{(pricePerNight * rangeDates.length) + cleaningFee}}</p>

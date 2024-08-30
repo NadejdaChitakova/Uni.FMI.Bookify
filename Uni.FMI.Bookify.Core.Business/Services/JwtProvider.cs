@@ -25,6 +25,7 @@ namespace Uni_FMI.Bookify.Core.Business.Services
             {
                 new(JwtRegisteredClaimNames.Sub, applicationUser.Id.ToString()),
                 new(JwtRegisteredClaimNames.Email, applicationUser.Email.ToString()),
+                new("role", applicationUser.UserRoles.FirstOrDefault().Role.Name )
             };
 
             var signingCredentials = new SigningCredentials(

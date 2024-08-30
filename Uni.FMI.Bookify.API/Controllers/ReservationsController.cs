@@ -29,7 +29,7 @@ namespace Uni.FMI.Bookify.API.Controllers
         }
 
         [HttpDelete(nameof(DeclineReservation))]
-        public IActionResult DeclineReservation(int reservationId, CancellationToken cancellationToken)
+        public IActionResult DeclineReservation(Guid reservationId, CancellationToken cancellationToken)
         {
             var result = bookingService.DeclineReservation(reservationId, cancellationToken);
 

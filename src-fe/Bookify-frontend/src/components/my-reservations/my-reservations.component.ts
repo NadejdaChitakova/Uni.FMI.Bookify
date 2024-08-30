@@ -35,5 +35,10 @@ export class MyReservationsComponent {
       }
     });
   }
+
+  declineReservation(reservationId: string){
+    console.log(reservationId)
+    this.bookingService.declineReservation(reservationId).subscribe();
+  }
  }
 

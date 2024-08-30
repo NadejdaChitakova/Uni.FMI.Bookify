@@ -1,5 +1,5 @@
 <p-panel [showHeader]="true" header="Имоти">
-<div class="flex flex-row gap-1 " style="display: flex; flex-direction: row; row-gap: 1%; gap:1%">
+<div style="display: flex; flex-direction: row; row-gap: 1%; gap:1%">
   <p-floatLabel>
       <p-calendar
       [(ngModel)]="rangeDates"
@@ -43,8 +43,6 @@
 </div>
 
 <hr>
-<a [routerLink]="['apartments/add']" pButton label="Add apartment" icon="pi pi-pencil" style="text-decoration: none;"></a>
-
 <div class="apartments">
   @for (item of apartments; track $index) {
     <apartment [apartment]="item"></apartment>
