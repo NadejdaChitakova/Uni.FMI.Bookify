@@ -1,51 +1,51 @@
 <div class="register-container">
-  <h2>User Registration</h2>
+  <h2>Регистрация</h2>
   <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <div>
-      <label for="firstname">First Name</label>
+      <label for="firstname">Име</label>
       <input id="firstname" name="firstname" [(ngModel)]="registerUser.firstname" required />
       <div *ngIf="registerForm.submitted && !registerForm.controls['firstname'].valid">
-        <small>First Name is required.</small>
+        <small>Името е задължително.</small>
       </div>
     </div>
 
     <div>
-      <label for="lastname">Last Name</label>
+      <label for="lastname">Фамилия</label>
       <input id="lastname" name="lastname" [(ngModel)]="registerUser.lastname" required />
       <div *ngIf="registerForm.submitted && !registerForm.controls['lastname'].valid">
-        <small>Last Name is required.</small>
+        <small>Фамилията е задължителна.</small>
       </div>
     </div>
 
     <div>
-      <label for="phoneNumber">Phone Number</label>
+      <label for="phoneNumber">Телефонен номер</label>
       <input id="phoneNumber" name="phoneNumber" [(ngModel)]="registerUser.phoneNumber" required />
       <div *ngIf="registerForm.submitted && !registerForm.controls['phoneNumber'].valid">
-        <small>Phone Number is required.</small>
+        <small>Телефонният номер е задължителен.</small>
       </div>
     </div>
 
     <div>
-      <label for="email">Email</label>
+      <label for="email">Имейл адрес</label>
       <input id="email" name="email" type="email" [(ngModel)]="registerUser.email" required email />
       <div *ngIf="registerForm.submitted && !registerForm.controls['email'].valid">
-        <small>Valid Email is required.</small>
+        <small>Имейл адреса е задължителен.</small>
       </div>
     </div>
 
     <div>
-      <label for="password">Password</label>
+      <label for="password">Парола</label>
       <input id="password" name="password" type="password" [(ngModel)]="registerUser.password" required minlength="6" />
       <div *ngIf="registerForm.submitted && !registerForm.controls['password'].valid">
-        <small>Password is required (minimum 6 characters).</small>
+        <small>Паролата е задължителна (минимум 6 символа).</small>
       </div>
     </div>
 
     <div>
-      <label>Register like owner</label>
+      <label>Регистрация като собственик</label>
       <input id="registerLikeOwner" name="registerLikeOwner" [(ngModel)]="registerUser.registerLikeOwner" type="checkbox">
     </div>
 
-    <button pButton onclick="onSubmit()" type="submit">Register</button>
+    <button pButton onclick="onSubmit()" type="submit">Регистрирай</button>
   </form>
 </div>

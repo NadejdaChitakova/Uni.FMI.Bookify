@@ -45,8 +45,7 @@ export class HeaderComponent implements OnInit {
         })
     }
 
-    if(this.authService.isLoggedIn()
-      &&this.authService.decodeToken() == "Admin"){
+    if(this.isLoggedIn()){
       this.items.push(
         {
           label: 'Моите обяви',
